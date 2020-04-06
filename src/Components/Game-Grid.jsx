@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 class GameGrid extends React.Component {
   state = {
-    grid: ["", "", ""],
+    grid: ["", "", "", "", "", "", "", "", ""],
     player1: "X",
     player2: "O",
     counter: 0,
@@ -50,15 +50,17 @@ class GameGrid extends React.Component {
 
     return (
       <div className="Grid-Wrapper">
-        <div id="box-1" onClick={this.handleClick}></div>
-        <div id="box-2" onClick={this.handleClick}></div>
-        <div id="box-3" onClick={this.handleClick}></div>
-        <div id="box-4" onClick={this.handleClick}></div>
-        <div id="box-5" onClick={this.handleClick}></div>
-        <div id="box-6" onClick={this.handleClick}></div>
-        <div id="box-7" onClick={this.handleClick}></div>
-        <div id="box-8" onClick={this.handleClick}></div>
-        <div id="box-9" onClick={this.handleClick}></div>
+        {grid.map((gridBox, index) => {
+          return (
+            <div
+              id={`box-${index + 1}`}
+              key={`box-${index + 1}`}
+              onClick={this.handleClick}
+            >
+              {gridBox}
+            </div>
+          );
+        })}
       </div>
     );
   }
