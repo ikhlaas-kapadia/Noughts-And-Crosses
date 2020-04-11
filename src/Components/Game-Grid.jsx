@@ -8,9 +8,63 @@ class GameGrid extends React.Component {
     counter: 0,
     turn: 1,
   };
+
+  generateWinOrder = () => {
+    const rowLength = 3;
+    const wins = [];
+    const { grid, player1 } = this.state;
+
+    let horizontalWins = [];
+    let verticalWins = [];
+    let diagonalWins = [];
+    for (let i = 1; i <= grid.length; i++) {
+      horizontalWins.push(i);
+      if (i % rowLength === 0) {
+        wins.push(horizontalWins);
+        horizontalWins = [];
+      }
+    }
+
+    const firstRow = [...wins[0]];
+    console.log(firstRow);
+    const firstNumFirstRow = firstRow[0];
+    const lastNumLastRow = firstRow[firstRow.length - 1];
+    const diagonalCalculate = [firstNumFirstRow, lastNumLastRow];
+
+    for (let i = 0; i < diagonalCalculate.length; i++) {
+      diagonalWins.push(diagonalCalculate[i]);
+      for (let j = 0; j < diagonalCalculate.length; j++) {
+        if (i === 0) {
+          diagonalWins.push(diagonalWins[j] + rowLength + 1);
+        } else {
+          diagonalWins.push(diagonalWins[j] + rowLength - 1);
+        }
+      }
+      wins.push(diagonalWins);
+      diagonalWins = [];
+    }
+
+    for (let i = 0; i < firstRow.length; i++) {
+      verticalWins.push(firstRow[i]);
+      for (let j = 0; j < firstRow.length - 1; j++) {
+        verticalWins.push(verticalWins[j] + rowLength);
+      }
+      wins.push(verticalWins);
+      verticalWins = [];
+    }
+
+    console.log(wins);
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.grid !== this.state.grid) {
+      this.generateWinOrder();
+    }
+  }
+
   handleClick = (e) => {
     let id = Number(e.target.id.slice(4));
-    console.log(typeof id);
+    // console.log(id);
 
     if (e.target.innerText) return;
 
@@ -46,8 +100,6 @@ class GameGrid extends React.Component {
   };
   render() {
     const { grid, counter, turn, player1, player2 } = this.state;
-    console.log(grid, counter, turn);
-
     return (
       <div className="Grid-Wrapper">
         {grid.map((gridBox, index) => {
