@@ -7,6 +7,31 @@ class GameGrid extends React.Component {
     player2: "O",
     counter: 0,
     turn: 1,
+    winCombinations: [],
+  };
+
+  checkWinner = () => {
+    const { winCombinations, grid } = this.state;
+
+    let winner = [];
+    for (let i = 0; i < grid.length; i++) {
+      if (grid[i] === "X") {
+        winner.push(i + 1);
+      }
+    }
+
+    for (let i = 0; i < winCombinations.length; i++) {
+      let counter = 0;
+      for (let j = 0; j < winCombinations[i].length; j++) {
+        if (winCombinations[i][j] === winner[j]) {
+          counter++;
+          console.log(counter);
+          if (counter === 3) {
+            console.log("winner");
+          }
+        }
+      }
+    }
   };
 
   generateWinOrder = () => {
@@ -53,12 +78,16 @@ class GameGrid extends React.Component {
       verticalWins = [];
     }
 
-    console.log(wins);
+    this.setState({ winCombinations: wins });
   };
+
+  componentDidMount() {
+    this.generateWinOrder();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.grid !== this.state.grid) {
-      this.generateWinOrder();
+      this.checkWinner();
     }
   }
 
