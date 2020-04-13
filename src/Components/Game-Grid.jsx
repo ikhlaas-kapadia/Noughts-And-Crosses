@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 class GameGrid extends React.Component {
   state = {
-    grid: ["", "", "", "", "", "", "", "", "",],
+    grid: ["", "", "", "", "", "", "", "", ""],
     player1: "X",
     player2: "O",
     counter: 0,
@@ -29,7 +29,7 @@ class GameGrid extends React.Component {
       for (let j = 0; j < winCombinations[i].length; j++) {
         if (winCombinations[i][j] === positions[j]) {
           wincounter++;
-          if (wincounter === 3) {
+          if (wincounter === winCombinations[i].length) {
             this.setState({
               winner: currentPlayer === "X" ? "player1" : "player2",
             });
@@ -40,7 +40,8 @@ class GameGrid extends React.Component {
   };
 
   generateWinOrder = () => {
-    const rowLength = 3;
+    const rowLength = Math.sqrt(this.state.grid.length);
+    console.log(rowLength);
     const wins = [];
     const { grid, player1 } = this.state;
 
