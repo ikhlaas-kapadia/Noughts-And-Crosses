@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 class GameGrid extends React.Component {
   state = {
-    grid: ["", "", "", "", "", "", "", "", ""],
+    grid: ["", "", "", "", "", "", "", "", "",],
     player1: "X",
     player2: "O",
     counter: 0,
@@ -98,6 +98,9 @@ class GameGrid extends React.Component {
   }
 
   handleClick = (e) => {
+    if (this.state.winner) {
+      return;
+    }
     let id = Number(e.target.id.slice(4));
 
     if (e.target.innerText) return;
