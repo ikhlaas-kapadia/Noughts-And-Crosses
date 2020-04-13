@@ -8,26 +8,31 @@ class GameGrid extends React.Component {
     counter: 0,
     turn: 1,
     winCombinations: [],
+    winner: "",
   };
 
   checkWinner = () => {
-    const { winCombinations, grid } = this.state;
+    const { winCombinations, grid, turn } = this.state;
+    const currentPlayer = turn === 1 ? "O" : "X";
 
-    let winner = [];
+    this.setState({ checked: currentPlayer });
+    let positions = [];
     for (let i = 0; i < grid.length; i++) {
-      if (grid[i] === "X") {
-        winner.push(i + 1);
+      if (grid[i] === currentPlayer) {
+        positions.push(i + 1);
       }
     }
 
     for (let i = 0; i < winCombinations.length; i++) {
-      let counter = 0;
+      let wincounter = 0;
+
       for (let j = 0; j < winCombinations[i].length; j++) {
-        if (winCombinations[i][j] === winner[j]) {
-          counter++;
-          console.log(counter);
-          if (counter === 3) {
-            console.log("winner");
+        if (winCombinations[i][j] === positions[j]) {
+          wincounter++;
+          if (wincounter === 3) {
+            this.setState({
+              winner: currentPlayer === "X" ? "player1" : "player2",
+            });
           }
         }
       }
@@ -51,7 +56,7 @@ class GameGrid extends React.Component {
     }
 
     const firstRow = [...wins[0]];
-    console.log(firstRow);
+    // console.log(firstRow);
     const firstNumFirstRow = firstRow[0];
     const lastNumLastRow = firstRow[firstRow.length - 1];
     const diagonalCalculate = [firstNumFirstRow, lastNumLastRow];
@@ -87,13 +92,13 @@ class GameGrid extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.grid !== this.state.grid) {
+      // console.log("checked");
       this.checkWinner();
     }
   }
 
   handleClick = (e) => {
     let id = Number(e.target.id.slice(4));
-    // console.log(id);
 
     if (e.target.innerText) return;
 
@@ -128,7 +133,8 @@ class GameGrid extends React.Component {
     }
   };
   render() {
-    const { grid, counter, turn, player1, player2 } = this.state;
+    const { grid, winner } = this.state;
+
     return (
       <div className="Grid-Wrapper">
         {grid.map((gridBox, index) => {
@@ -142,6 +148,7 @@ class GameGrid extends React.Component {
             </div>
           );
         })}
+        {winner && <p>{winner} wins</p>}
       </div>
     );
   }
