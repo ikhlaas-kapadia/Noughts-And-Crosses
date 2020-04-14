@@ -59,12 +59,12 @@ class GameGrid extends React.Component {
     const firstRow = [...wins[0]];
     // console.log(firstRow);
     const firstNumFirstRow = firstRow[0];
-    const lastNumLastRow = firstRow[firstRow.length - 1];
-    const diagonalCalculate = [firstNumFirstRow, lastNumLastRow];
+    const lastNumFirstRow = firstRow[firstRow.length - 1];
+    const diagonalCalculate = [firstNumFirstRow, lastNumFirstRow];
 
     for (let i = 0; i < diagonalCalculate.length; i++) {
       diagonalWins.push(diagonalCalculate[i]);
-      for (let j = 0; j < diagonalCalculate.length; j++) {
+      for (let j = 0; j < firstRow.length - 1; j++) {
         if (i === 0) {
           diagonalWins.push(diagonalWins[j] + rowLength + 1);
         } else {
