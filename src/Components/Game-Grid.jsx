@@ -97,6 +97,14 @@ class GameGrid extends React.Component {
       this.checkWinner();
     }
   }
+  handleReset = (e) => {
+    this.setState({
+      grid: ["", "", "", "", "", "", "", "", ""],
+      counter: 0,
+      turn: 1,
+      winner: "",
+    });
+  };
 
   handleClick = (e) => {
     if (this.state.winner) {
@@ -153,6 +161,7 @@ class GameGrid extends React.Component {
           );
         })}
         {winner && <p>{winner} wins</p>}
+        <button onClick={this.handleReset}>reset</button>
       </div>
     );
   }
