@@ -1,14 +1,32 @@
 import React from "react";
 import "../App.css";
+import PlayerOne from "./PlayerOne";
+import PlayerTwo from "./PlayerTwo";
 class GameGrid extends React.Component {
   state = {
     grid: ["", "", "", "", "", "", "", "", ""],
-    player1: "X",
-    player2: "O",
+    playerOneName: "Player 1",
+    playerOneIcon: "X",
+    playerTwoName: "Player 2",
+    playerTwoIcon: "O",
     counter: 0,
     turn: 1,
     winCombinations: [],
     winner: "",
+  };
+
+  handleNameChange = (e) => {
+    const { value, name } = e.target;
+    console.log(value, name);
+    this.setState({
+      [name]: value,
+    });
+  };
+  handleIconChange = (e) => {
+    const { value, name } = e.target;
+    this.setState({
+      [name]: value,
+    });
   };
 
   checkWinner = () => {
@@ -41,7 +59,7 @@ class GameGrid extends React.Component {
 
   generateWinOrder = () => {
     const rowLength = Math.sqrt(this.state.grid.length);
-    console.log(rowLength);
+
     const wins = [];
     const { grid, player1 } = this.state;
 
@@ -145,24 +163,49 @@ class GameGrid extends React.Component {
     }
   };
   render() {
-    const { grid, winner } = this.state;
+    const {
+      grid,
+      winner,
+      player1,
+      player2,
+      playerOneName,
+      playerOneIcon,
+      playerTwoName,
+      playerTwoIcon,
+    } = this.state;
+    console.log([winner]);
 
     return (
-      <div className="Grid-Wrapper">
-        {grid.map((gridBox, index) => {
-          return (
-            <div
-              id={`box-${index + 1}`}
-              key={`box-${index + 1}`}
-              onClick={this.handleClick}
-            >
-              {gridBox}
-            </div>
-          );
-        })}
-        {winner && <p>{winner} wins</p>}
-        <button onClick={this.handleReset}>reset</button>
-      </div>
+      <section>
+        <PlayerOne
+          playerOneName={playerOneName}
+          playerOneIcon={playerOneIcon}
+          handleNameChange={this.handleNameChange}
+          handleIconChange={this.handleIconChange}
+        />
+        <div className="Grid-Wrapper">
+          {grid.map((gridBox, index) => {
+            return (
+              <div
+                id={`box-${index + 1}`}
+                key={`box-${index + 1}`}
+                onClick={this.handleClick}
+                className={gridBox === this.state[winner] ? `winner` : `none`}
+              >
+                {gridBox}
+              </div>
+            );
+          })}
+          {winner && <p>{winner} wins</p>}
+          <button onClick={this.handleReset}>reset</button>
+        </div>
+        <PlayerTwo
+          playerTwoName={playerTwoName}
+          playerTwoIcon={playerTwoIcon}
+          handleNameChange={this.handleNameChange}
+          handleIconChange={this.handleIconChange}
+        />
+      </section>
     );
   }
 }
