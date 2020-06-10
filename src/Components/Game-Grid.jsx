@@ -2,8 +2,10 @@ import React from "react";
 import "../App.css";
 import PlayerOne from "./PlayerOne";
 import PlayerTwo from "./PlayerTwo";
+import GridGenerator from "./Grid-Generator";
 class GameGrid extends React.Component {
   state = {
+    gridSize: 9,
     grid: ["", "", "", "", "", "", "", "", ""],
     playerOneName: "Player 1",
     playerOneIcon: "X",
@@ -13,6 +15,20 @@ class GameGrid extends React.Component {
     turn: 1,
     winCombinations: [],
     winner: "",
+  };
+
+  handleGridSize = (e) => {
+    const { value } = e.target;
+    const newGridSize = Math.pow(value, 2);
+    console.log(typeof newGridSize);
+    if (value % 2 === 0) {
+      return;
+    } else {
+      this.setState({
+        gridSize: newGridSize,
+        grid: [...Array(newGridSize)],
+      });
+    }
   };
 
   handleNameChange = (e) => {
@@ -30,7 +46,14 @@ class GameGrid extends React.Component {
   };
 
   checkWinner = () => {
-    const { winCombinations, grid, turn } = this.state;
+    const {
+      winCombinations,
+      grid,
+      turn,
+      playerOneIcon,
+      playerOneName,
+      playerTwoName,
+    } = this.state;
     const currentPlayer = turn === 1 ? "O" : "X";
 
     this.setState({ checked: currentPlayer });
@@ -49,7 +72,8 @@ class GameGrid extends React.Component {
           wincounter++;
           if (wincounter === winCombinations[i].length) {
             this.setState({
-              winner: currentPlayer === "X" ? "player1" : "player2",
+              winner:
+                currentPlayer === playerOneIcon ? playerOneName : playerTwoName,
             });
           }
         }
@@ -61,7 +85,7 @@ class GameGrid extends React.Component {
     const rowLength = Math.sqrt(this.state.grid.length);
 
     const wins = [];
-    const { grid, player1 } = this.state;
+    const { grid } = this.state;
 
     let horizontalWins = [];
     let verticalWins = [];
@@ -75,7 +99,7 @@ class GameGrid extends React.Component {
     }
 
     const firstRow = [...wins[0]];
-    // console.log(firstRow);
+    console.log(firstRow);
     const firstNumFirstRow = firstRow[0];
     const lastNumFirstRow = firstRow[firstRow.length - 1];
     const diagonalCalculate = [firstNumFirstRow, lastNumFirstRow];
@@ -137,7 +161,7 @@ class GameGrid extends React.Component {
         return {
           grid: [...currentState.grid].map((gridBox, index) => {
             if (index + 1 === id) {
-              return (gridBox = currentState.player1);
+              return (gridBox = currentState.playerOneIcon);
             } else {
               return gridBox;
             }
@@ -151,7 +175,7 @@ class GameGrid extends React.Component {
         return {
           grid: [...currentState.grid].map((gridBox, index) => {
             if (index + 1 === id) {
-              return (gridBox = currentState.player2);
+              return (gridBox = currentState.playerTwoIcon);
             } else {
               return gridBox;
             }
@@ -166,8 +190,6 @@ class GameGrid extends React.Component {
     const {
       grid,
       winner,
-      player1,
-      player2,
       playerOneName,
       playerOneIcon,
       playerTwoName,
@@ -183,21 +205,24 @@ class GameGrid extends React.Component {
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}
         />
-        <div className="Grid-Wrapper">
-          {grid.map((gridBox, index) => {
-            return (
-              <div
-                id={`box-${index + 1}`}
-                key={`box-${index + 1}`}
-                onClick={this.handleClick}
-                className={gridBox === this.state[winner] ? `winner` : `none`}
-              >
-                {gridBox}
-              </div>
-            );
-          })}
-          {winner && <p>{winner} wins</p>}
-          <button onClick={this.handleReset}>reset</button>
+        <div>
+          <GridGenerator handleGridSize={this.handleGridSize} />
+          <div className="Grid-Wrapper">
+            {grid.map((gridBox, index) => {
+              return (
+                <div
+                  id={`box-${index + 1}`}
+                  key={`box-${index + 1}`}
+                  onClick={this.handleClick}
+                  className={gridBox === this.state[winner] ? `winner` : `none`}
+                >
+                  {gridBox}
+                </div>
+              );
+            })}
+            {winner && <p>{winner} wins</p>}
+            <button onClick={this.handleReset}>reset</button>
+          </div>
         </div>
         <PlayerTwo
           playerTwoName={playerTwoName}
