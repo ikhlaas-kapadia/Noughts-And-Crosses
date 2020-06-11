@@ -17,8 +17,13 @@ section {
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.board {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}
 
-.Grid-Wrapper {
+.board-Wrapper {
   display: grid;
   width: 20em;
   height: 20em;
@@ -53,6 +58,7 @@ section {
 .Player {
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
 }
 
 .Icon {
