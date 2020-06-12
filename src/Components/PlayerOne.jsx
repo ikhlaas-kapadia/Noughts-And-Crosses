@@ -7,8 +7,7 @@ const PlayerOne = (props) => {
   return (
     <div className="Player">
       <h2>
-        {!name ? "Player 1" : name.toUpperCase()}{" "}
-        <span className="Icon">{!icon ? "X" : icon}</span>
+        {name.toUpperCase()} <span className="Icon">{!icon ? "X" : icon}</span>
       </h2>
       <div className="NameForm">
         <form onSubmit={handleNameSubmit} name="player1">
@@ -18,7 +17,7 @@ const PlayerOne = (props) => {
           <button>Change Name</button>
         </form>
         <p>`(Optional - Select Character)` </p>
-        <input onChange={handleIconChange} name="player1"></input>
+        <input onChange={handleIconChange} name="player1" maxLength="2"></input>
         <div className="Score">
           {" "}
           <h3>SCORE</h3>

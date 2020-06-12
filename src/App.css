@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-section {
-  display: flex;
-  flex-direction: row;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -17,27 +12,65 @@ section {
   font-size: calc(10px + 2vmin);
   color: white;
 }
-.board {
+
+section {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  height: 85vh;
+  justify-content: center;
+}
+.Board-Wrapper {
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 600px;
+  align-items: center;
 }
 
-.board-Wrapper {
+.Board-9 {
+  border: 1px solid green;
   display: grid;
-  width: 20em;
-  height: 20em;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  border: 2px solid black;
-  grid-gap: 1em;
-  margin: 0 auto;
-  padding: 1em;
-  grid-auto-rows: auto;
+  height: 50vh;
+  width: 50vh;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 5px;
+  font-size: 1rem;
+}
+.Board-25 {
+  border: 1px solid green;
+  display: grid;
+  height: 50vh;
+  width: 50vh;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 5px;
+  font-size: 0.5rem;
+}
+.Board-49 {
+  border: 1px solid green;
+  display: grid;
+  height: 50vh;
+  width: 50vh;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-gap: 5px;
+  font-size: 0.5rem;
+}
+.Board-81 {
+  border: 1px solid green;
+  display: grid;
+  height: 50vh;
+  width: 50vh;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  grid-gap: 5px;
+  font-size: 0.5rem;
 }
 
-.none {
-  overflow: hidden;
+.Box {
   background-color: aqua;
   border: 1px solid rgb(95, 83, 67);
   display: flex;

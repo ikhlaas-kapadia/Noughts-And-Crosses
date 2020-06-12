@@ -13,7 +13,6 @@ class GameGrid extends React.Component {
     playerTwoInput: "",
     counter: 0,
     winCombinations: [],
-    winner: "",
   };
 
   handleboardSize = (e) => {
@@ -53,6 +52,14 @@ class GameGrid extends React.Component {
     updatedPlayer.icon = value;
     this.setState({
       [name]: updatedPlayer,
+    });
+  };
+  handleReset = (e) => {
+    const { boardSize } = this.state;
+    this.setState({
+      board: [...Array(boardSize)],
+      counter: 0,
+      winner: undefined,
     });
   };
 
@@ -163,16 +170,10 @@ class GameGrid extends React.Component {
       this.checkWinner();
     }
   }
-  handleReset = (e) => {
-    this.setState({
-      board: ["", "", "", "", "", "", "", "", ""],
-      counter: 0,
-      winner: "",
-    });
-  };
 
   handleClick = (e) => {
-    if (this.state.winner) {
+    const { winner } = this.state;
+    if (winner !== undefined) {
       return;
     }
     let id = Number(e.target.id.slice(4));
@@ -208,8 +209,8 @@ class GameGrid extends React.Component {
     }
   };
   render() {
-    const { board, winner, player1, player2 } = this.state;
-    // console.log([winner]);
+    const { board, winner, player1, player2, boardSize } = this.state;
+    console.log(winner);
 
     return (
       <section>
@@ -219,26 +220,28 @@ class GameGrid extends React.Component {
           handleIconChange={this.handleIconChange}
           handleNameSubmit={this.handleNameSubmit}
         />
-        <div className="board">
+        <div className="Board-Wrapper">
           <GridGenerator handleboardSize={this.handleboardSize} />
-          <div className="board-Wrapper">
+          <div className={`Board-${boardSize}`}>
             {board.map((boardBox, index) => {
               return (
                 <div
                   id={`box-${index + 1}`}
                   key={`box-${index + 1}`}
                   onClick={this.handleClick}
-                  className={
-                    boardBox === this.state[winner] ? `winner` : `none`
-                  }
+                  className={boardBox === this.state[winner] ? `winner` : `Box`}
                 >
                   {boardBox}
                 </div>
               );
             })}
-            {winner && <p>{winner} wins</p>}
-            <button onClick={this.handleReset}>reset</button>
           </div>
+          <button onClick={this.handleReset}>reset</button>
+          {winner !== undefined && (
+            <p>
+              {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} Wins!
+            </p>
+          )}
         </div>
         <PlayerTwo
           player2={player2}
