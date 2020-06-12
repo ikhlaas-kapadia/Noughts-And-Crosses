@@ -7,12 +7,11 @@ class GameGrid extends React.Component {
   state = {
     boardSize: 9,
     board: ["", "", "", "", "", "", "", "", ""],
-    playerOne: { name: "Player1", icon: "X", gamesWon: 0 },
-    playerTwo: { name: "Player 2", icon: "O", gamesWon: 0 },
+    player1: { name: "player1", icon: "X", gamesWon: 0 },
+    player2: { name: "player2", icon: "O", gamesWon: 0 },
     playerOneInput: "",
     playerTwoInput: "",
     counter: 0,
-    turn: 1,
     winCombinations: [],
     winner: "",
   };
@@ -41,7 +40,7 @@ class GameGrid extends React.Component {
     const { playerOneInput, playerTwoInput } = this.state;
     e.preventDefault();
     const { name } = e.target;
-    const playerInput = name === "playerOne" ? playerOneInput : playerTwoInput;
+    const playerInput = name === "player1" ? playerOneInput : playerTwoInput;
     console.log(playerInput);
     const updatedPlayer = { ...this.state[name] };
     updatedPlayer.name = playerInput;
@@ -58,36 +57,32 @@ class GameGrid extends React.Component {
   };
 
   checkWinner = () => {
-    const {
-      winCombinations,
-      board,
-      turn,
-      playerOneIcon,
-      playerOneName,
-      playerTwoName,
-    } = this.state;
-    const currentPlayer = turn === 1 ? "O" : "X";
+    const { winCombinations, board, player1, player2, counter } = this.state;
+    const playerObject =
+      counter % 2 === 0 || counter === 0 ? "player2" : "player1";
+    const previousPlayer =
+      counter % 2 === 0 || counter === 0 ? player2 : player1;
 
-    this.setState({ checked: currentPlayer });
-    let positions = [];
+    let playerPositions = [];
     for (let i = 0; i < board.length; i++) {
-      if (board[i] === currentPlayer) {
-        positions.push(i + 1);
+      if (board[i] === previousPlayer.icon) {
+        playerPositions.push(i + 1);
       }
     }
 
     for (let i = 0; i < winCombinations.length; i++) {
-      let wincounter = 0;
-
+      let winningMatchCounter = 0;
       for (let j = 0; j < winCombinations[i].length; j++) {
-        if (winCombinations[i][j] === positions[j]) {
-          wincounter++;
-          if (wincounter === winCombinations[i].length) {
-            this.setState({
-              winner:
-                currentPlayer === playerOneIcon ? playerOneName : playerTwoName,
-            });
-          }
+        if (winCombinations[i][j] === playerPositions[j]) {
+          winningMatchCounter++;
+        }
+        if (winningMatchCounter === winCombinations[i].length) {
+          const updatedPlayer = { ...previousPlayer };
+          updatedPlayer.gamesWon++;
+          this.setState({
+            winner: previousPlayer.name,
+            [playerObject]: updatedPlayer,
+          });
         }
       }
     }
@@ -114,7 +109,7 @@ class GameGrid extends React.Component {
           lineWins = [];
         }
       }
-      console.log(horzWins, " --->horizon");
+      // console.log(horzWins, " --->horizon");
       winCombinations.push(...horzWins);
     };
 
@@ -126,7 +121,7 @@ class GameGrid extends React.Component {
         }
         vertWins.push(lineWins);
       }
-      console.log(vertWins, " --->vertical");
+      // console.log(vertWins, " --->vertical");
       winCombinations.push(...vertWins);
     };
 
@@ -136,7 +131,7 @@ class GameGrid extends React.Component {
       let rowBaseToCalcWin = [firstRowFirstNumber, firstRowLastNumber];
       for (let i = 0; i < rowBaseToCalcWin.length; i++) {
         let lineWins = [rowBaseToCalcWin[i]];
-        console.log(lineWins);
+        // console.log(lineWins);
         for (let j = 0; j < firstRow.length - 1; j++) {
           if (i === 0) {
             lineWins.push(lineWins[j] + firstRow.length + 1);
@@ -147,7 +142,7 @@ class GameGrid extends React.Component {
         diagonalWins.push(lineWins);
       }
 
-      console.log(diagonalWins, " --->diagonal");
+      // console.log(diagonalWins, " --->diagonal");
       winCombinations.push(...diagonalWins);
     };
     generateHorizontalWins();
@@ -164,16 +159,14 @@ class GameGrid extends React.Component {
     if (prevState.boardSize !== this.state.boardSize) {
       this.generateWinCombinations();
     }
-    if (prevState.board !== this.state.board) {
-      // console.log("checked");
+    if (prevState.counter !== this.state.counter) {
       this.checkWinner();
     }
   }
   handleReset = (e) => {
     this.setState({
-      grid: ["", "", "", "", "", "", "", "", ""],
+      board: ["", "", "", "", "", "", "", "", ""],
       counter: 0,
-      turn: 1,
       winner: "",
     });
   };
@@ -183,7 +176,7 @@ class GameGrid extends React.Component {
       return;
     }
     let id = Number(e.target.id.slice(4));
-    console.log(id);
+    // console.log(id);
     if (e.target.innerText) return;
 
     if (this.state.counter % 2 === 0) {
@@ -191,13 +184,12 @@ class GameGrid extends React.Component {
         return {
           board: [...currentState.board].map((boardBox, index) => {
             if (index + 1 === id) {
-              return (boardBox = currentState.playerOne.icon);
+              return (boardBox = currentState.player1.icon);
             } else {
               return boardBox;
             }
           }),
           counter: currentState.counter + 1,
-          turn: currentState.turn + 1,
         };
       });
     } else {
@@ -205,25 +197,24 @@ class GameGrid extends React.Component {
         return {
           board: [...currentState.board].map((boardBox, index) => {
             if (index + 1 === id) {
-              return (boardBox = currentState.playerTwo.icon);
+              return (boardBox = currentState.player2.icon);
             } else {
               return boardBox;
             }
           }),
           counter: currentState.counter + 1,
-          turn: currentState.turn - 1,
         };
       });
     }
   };
   render() {
-    const { board, winner, playerOne, playerTwo } = this.state;
-    console.log([winner]);
+    const { board, winner, player1, player2 } = this.state;
+    // console.log([winner]);
 
     return (
       <section>
         <PlayerOne
-          playerOne={playerOne}
+          player1={player1}
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}
           handleNameSubmit={this.handleNameSubmit}
@@ -250,7 +241,7 @@ class GameGrid extends React.Component {
           </div>
         </div>
         <PlayerTwo
-          playerTwo={playerTwo}
+          player2={player2}
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}
           handleNameSubmit={this.handleNameSubmit}
