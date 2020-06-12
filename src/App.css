@@ -2,23 +2,26 @@
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
+  background-color: #ff5956;
+  min-height: 5vh;
+  height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: 2rem;
+  color: #420c14;
 }
 
 section {
+  background-color: #8cfd73;
   display: flex;
   flex-direction: row;
   border: 1px solid black;
   height: 85vh;
   justify-content: center;
+  color: #420c14;
 }
 .Board-Wrapper {
   display: flex;
@@ -30,7 +33,6 @@ section {
 }
 
 .Board-9 {
-  border: 1px solid green;
   display: grid;
   height: 50vh;
   width: 50vh;
@@ -40,7 +42,6 @@ section {
   font-size: 1rem;
 }
 .Board-25 {
-  border: 1px solid green;
   display: grid;
   height: 50vh;
   width: 50vh;
@@ -50,7 +51,6 @@ section {
   font-size: 0.5rem;
 }
 .Board-49 {
-  border: 1px solid green;
   display: grid;
   height: 50vh;
   width: 50vh;
@@ -60,7 +60,6 @@ section {
   font-size: 0.5rem;
 }
 .Board-81 {
-  border: 1px solid green;
   display: grid;
   height: 50vh;
   width: 50vh;
@@ -71,12 +70,13 @@ section {
 }
 
 .Box {
-  background-color: aqua;
+  background-color: #37d84b;
   border: 1px solid rgb(95, 83, 67);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2em;
+  color: #3d4421;
 }
 .winner {
   overflow: hidden;
@@ -96,8 +96,22 @@ section {
 
 .Icon {
   border: 1px black solid;
-  border-radius: 30px;
+  border-radius: 30%;
   padding: 10px;
+  background-color: #ff5956;
+  font-size: 2rem;
+}
+.Player > h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10%;
+}
+
+.Icon-Changer {
+  margin-top: 10%;
+}
+.NameForm {
+  display: flex;
+  flex-direction: column;
 }
 
 /* .Grid-Wrapper > div:nth-child(odd) {

@@ -20,7 +20,7 @@ const PlayerTwo = (props) => {
           </label>
           <button>Change Name</button>
         </form>
-        <p>`(Optional - Select Character)` </p>
+        <p>Optional - Change Character </p>
         <input onChange={handleIconChange} name="player2" maxLength="2"></input>
         <div className="Score">
           <h3>SCORE</h3>
