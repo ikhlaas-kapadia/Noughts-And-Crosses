@@ -25,7 +25,7 @@ class GameGrid extends React.Component {
     } else {
       this.setState({
         boardSize: newboardSize,
-        grid: [...Array(newboardSize)],
+        board: [...Array(newboardSize)],
       });
     }
   };
@@ -93,72 +93,77 @@ class GameGrid extends React.Component {
     }
   };
 
-  generateHorizontalWins = () => {
+  generateWinCombinations = () => {
     const { board } = this.state;
     const rowLength = Math.sqrt(board.length);
-    let blockNumbers = board.map((el, index) => {
+    let firstRow = [...Array(rowLength + 1).keys()].splice(1, rowLength);
+    let winCombinations = [];
+    let horzWins = [];
+    let vertWins = [];
+    let diagonalWins = [];
+    let BoardSquares = board.map((el, index) => {
       el = index + 1;
       return el;
     });
-    let horzWins = [];
-    let lineWins = [];
-    for (let i = 0; i <= blockNumbers.length; i++) {
-      lineWins.push(blockNumbers[i]);
-      if (blockNumbers[i] % rowLength === 0) {
-        horzWins.push(lineWins);
-        lineWins = [];
-      }
-    }
-    console.log(horzWins, " --->horizon");
-    return blockNumbers;
-  };
-
-  generateVerticalWins = () => {
-    const { board } = this.state;
-    const rowLength = Math.sqrt(board.length);
-    let firstRow = [...Array(rowLength + 1).keys()].splice(1, rowLength);
-    let vertWins = [];
-    console.log(firstRow.length);
-    for (let i = 0; i < firstRow.length; i++) {
-      let lineWins = [firstRow[i]];
-      for (let j = 0; j < firstRow.length - 1; j++) {
-        lineWins.push(lineWins[j] + firstRow.length);
-      }
-      vertWins.push(lineWins);
-    }
-    console.log(vertWins, " --->vertical");
-  };
-  generateDiagonalWins = () => {
-    const { board } = this.state;
-    const rowLength = Math.sqrt(board.length);
-    let firstRow = [...Array(rowLength + 1).keys()].splice(1, rowLength);
-    let firstRowFirstNumber = firstRow[0];
-    let firstRowLastNumber = firstRow[firstRow.length - 1];
-    let rowBaseToCalcWin = [firstRowFirstNumber, firstRowLastNumber];
-    let diagonalWins = [];
-    console.log(firstRow.length);
-    for (let i = 0; i < rowBaseToCalcWin.length; i++) {
-      let lineWins = [rowBaseToCalcWin[i]];
-      console.log(lineWins);
-      for (let j = 0; j < firstRow.length - 1; j++) {
-        if (i === 0) {
-          lineWins.push(lineWins[j] + firstRow.length + 1);
-        } else {
-          lineWins.push(lineWins[j] + firstRow.length - 1);
+    const generateHorizontalWins = () => {
+      let lineWins = [];
+      for (let i = 0; i <= BoardSquares.length; i++) {
+        lineWins.push(BoardSquares[i]);
+        if (BoardSquares[i] % rowLength === 0) {
+          horzWins.push(lineWins);
+          lineWins = [];
         }
       }
-      diagonalWins.push(lineWins);
-    }
-    console.log(diagonalWins, " --->diagonal");
+      console.log(horzWins, " --->horizon");
+      winCombinations.push(...horzWins);
+    };
+
+    const generateVerticalWins = () => {
+      for (let i = 0; i < firstRow.length; i++) {
+        let lineWins = [firstRow[i]];
+        for (let j = 0; j < firstRow.length - 1; j++) {
+          lineWins.push(lineWins[j] + firstRow.length);
+        }
+        vertWins.push(lineWins);
+      }
+      console.log(vertWins, " --->vertical");
+      winCombinations.push(...vertWins);
+    };
+
+    const generateDiagonalWins = () => {
+      let firstRowFirstNumber = firstRow[0];
+      let firstRowLastNumber = firstRow[firstRow.length - 1];
+      let rowBaseToCalcWin = [firstRowFirstNumber, firstRowLastNumber];
+      for (let i = 0; i < rowBaseToCalcWin.length; i++) {
+        let lineWins = [rowBaseToCalcWin[i]];
+        console.log(lineWins);
+        for (let j = 0; j < firstRow.length - 1; j++) {
+          if (i === 0) {
+            lineWins.push(lineWins[j] + firstRow.length + 1);
+          } else {
+            lineWins.push(lineWins[j] + firstRow.length - 1);
+          }
+        }
+        diagonalWins.push(lineWins);
+      }
+
+      console.log(diagonalWins, " --->diagonal");
+      winCombinations.push(...diagonalWins);
+    };
+    generateHorizontalWins();
+    generateVerticalWins();
+    generateDiagonalWins();
+    this.setState({ winCombinations: winCombinations });
   };
 
   componentDidMount() {
-    this.generateHorizontalWins();
-    this.generateVerticalWins();
-    this.generateDiagonalWins();
+    this.generateWinCombinations();
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (prevState.boardSize !== this.state.boardSize) {
+      this.generateWinCombinations();
+    }
     if (prevState.board !== this.state.board) {
       // console.log("checked");
       this.checkWinner();
