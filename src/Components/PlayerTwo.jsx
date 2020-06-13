@@ -1,7 +1,12 @@
 import React from "react";
 
 const PlayerTwo = (props) => {
-  const { handleNameChange, handleIconChange, handleNameSubmit, input } = props;
+  const {
+    handleNameChange,
+    handleIconChange,
+    handleNameSubmit,
+    counter,
+  } = props;
   const { name, icon, gamesWon } = props.player2;
 
   return (
@@ -20,13 +25,26 @@ const PlayerTwo = (props) => {
           </label>
           <button>Change Name</button>
         </form>
-        <p>Optional - Change Character </p>
-        <input onChange={handleIconChange} name="player2" maxLength="2"></input>
+        <label>
+          <input
+            className="Icon-Changer"
+            onChange={handleIconChange}
+            name="player1"
+            maxLength="2"
+            minLength="1"
+            placeholder="Change character"
+          ></input>
+        </label>
         <div className="Score">
           <h3>SCORE</h3>
-          {gamesWon}
+          <span>{gamesWon}</span>
         </div>
       </div>
+      {counter % 2 !== 0 || counter === 1 ? (
+        <p className="Turn">Your Turn</p>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };

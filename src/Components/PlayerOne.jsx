@@ -1,7 +1,13 @@
 import React from "react";
 
 const PlayerOne = (props) => {
-  const { handleNameChange, handleIconChange, handleNameSubmit, input } = props;
+  const {
+    handleNameChange,
+    handleIconChange,
+    handleNameSubmit,
+    input,
+    counter,
+  } = props;
   const { name, icon, gamesWon } = props.player1;
 
   return (
@@ -23,16 +29,19 @@ const PlayerOne = (props) => {
           name="player1"
           maxLength="2"
           minLength="1"
+          placeholder="Change character"
         ></input>
-        diidsjijsddsjisdiidsjdsji
       </label>
-      <p>Optional - Change Character </p>
-
       <div className="Score">
         {" "}
         <h3>SCORE</h3>
-        {gamesWon}
+        <span>{gamesWon}</span>
       </div>
+      {counter % 2 === 0 || counter === 0 ? (
+        <p className="Turn">Your Turn</p>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 };

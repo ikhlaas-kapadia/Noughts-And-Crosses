@@ -209,7 +209,7 @@ class GameGrid extends React.Component {
     }
   };
   render() {
-    const { board, winner, player1, player2, boardSize } = this.state;
+    const { board, winner, player1, player2, boardSize, counter } = this.state;
     console.log(winner);
 
     return (
@@ -219,6 +219,7 @@ class GameGrid extends React.Component {
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}
           handleNameSubmit={this.handleNameSubmit}
+          counter={counter}
         />
         <div className="Board-Wrapper">
           <GridGenerator handleboardSize={this.handleboardSize} />
@@ -248,6 +249,7 @@ class GameGrid extends React.Component {
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}
           handleNameSubmit={this.handleNameSubmit}
+          counter={counter}
         />
       </section>
     );
