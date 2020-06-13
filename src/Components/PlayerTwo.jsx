@@ -6,9 +6,9 @@ const PlayerTwo = (props) => {
     handleIconChange,
     handleNameSubmit,
     counter,
+    winner,
   } = props;
   const { name, icon, gamesWon } = props.player2;
-
   return (
     <div className="Player">
       <h2>
@@ -29,7 +29,7 @@ const PlayerTwo = (props) => {
           <input
             className="Icon-Changer"
             onChange={handleIconChange}
-            name="player1"
+            name="player2"
             maxLength="2"
             minLength="1"
             placeholder="Change character"
@@ -40,7 +40,7 @@ const PlayerTwo = (props) => {
           <span>{gamesWon}</span>
         </div>
       </div>
-      {counter % 2 !== 0 || counter === 1 ? (
+      {winner === undefined && (counter % 2 !== 0 || counter === 1) ? (
         <p className="Turn">Your Turn</p>
       ) : (
         <p></p>

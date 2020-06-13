@@ -5,7 +5,7 @@ const PlayerOne = (props) => {
     handleNameChange,
     handleIconChange,
     handleNameSubmit,
-    input,
+    winner,
     counter,
   } = props;
   const { name, icon, gamesWon } = props.player1;
@@ -37,7 +37,7 @@ const PlayerOne = (props) => {
         <h3>SCORE</h3>
         <span>{gamesWon}</span>
       </div>
-      {counter % 2 === 0 || counter === 0 ? (
+      {winner === undefined && (counter % 2 === 0 || counter === 0) ? (
         <p className="Turn">Your Turn</p>
       ) : (
         <p></p>
