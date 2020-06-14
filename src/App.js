@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
 import GameGrid from "./Components/Game-Grid";
-import GridGenerator from "./Components/GridSelector";
-
 
 function App() {
   return (

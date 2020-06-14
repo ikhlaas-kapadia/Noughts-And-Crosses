@@ -5,7 +5,7 @@
 header {
   background-color: #ffff59;
   min-height: 5vh;
-  height: 20vh;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,8 +18,7 @@ section {
   background-color: #8cfd73;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
-  height: 80vh;
+  height: 85vh;
   width: 100%;
 
   justify-content: center;
@@ -32,19 +31,18 @@ section {
   height: 100%;
   width: 60%;
   align-items: center;
+  justify-content: center;
 }
-
-.Board-9,
-.Board-25,
-.Board-49,
-.Board-81 {
+.Board {
   display: grid;
   height: 55vh;
   width: 60vh;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   grid-gap: 15px;
   font-size: 1rem;
+}
+.Board-9 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 .Board-25 {
   grid-template-columns: repeat(5, 1fr);
@@ -80,15 +78,18 @@ section {
 }
 
 .Reset-Btn {
+  font-size: 1.2rem;
   margin-top: 10px;
 }
 .Drop-Down {
   height: 50%;
   margin-left: 10px;
+  font-size: 1.2rem;
 }
 
-.Grid-Selector,
+.Board-Selector,
 .Hidden-Selector {
+  font-size: 1.6rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -107,18 +108,24 @@ option {
   flex-direction: column;
   border: 1px solid black;
   padding: 1%;
-  width: 24%;
+  width: 20%;
+  height: 80%;
+  margin: auto 1%;
+  background-color: #d8d8d8;
 }
-
+.Box-Content {
+  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+}
 .Icon {
   border: 1px black solid;
   border-radius: 30%;
   padding: 5px;
-  background-color: #ff5956;
+  background-color: #969696;
   font-size: 1.5rem;
+  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .Player > h2 {
-  font-size: 1.4rem;
+  font-size: 2.5rem;
   margin-bottom: 10%;
 }
 
@@ -126,13 +133,26 @@ option {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+.NameForm input {
+  font-family: inherit;
+  font-size: 1.5rem;
+  width: 90%;
+  /* margin: 0 auto; */
 }
 .NameForm button {
   margin-top: 2%;
   width: fit-content;
+  font-family: inherit;
+  font-size: 1.5rem;
 }
 .Icon-Changer {
   margin-top: 15%;
+  font-family: inherit;
+  font-size: 1.5rem;
+  width: 40%;
 }
 .ChangeIconMsg {
   display: block;
@@ -140,14 +160,20 @@ option {
 }
 
 .Score {
-  margin-top: 20%;
+  margin-top: 10%;
 }
 .Score h3 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: #101510;
+  margin-bottom: 10px;
 }
 .Score span {
-  font-size: 2rem;
+  font-size: 3rem;
+}
+
+.Message {
+  margin-top: 10px;
+  font-size: 1.5rem;
 }
 .Turn {
   margin: 20px auto;
@@ -156,8 +182,121 @@ option {
   /* border-radius: 40%; */
   padding: 1%;
   width: 50%;
+  font-size: 1.2rem;
 }
 
 /* .Grid-Wrapper > div:nth-child(odd) {
   background-color: burlywood;
 } */
+
+@media only screen and (max-width: 867px) {
+  .Board {
+    text-align: center;
+    height: 70%;
+    width: 80%;
+    font-size: 0.8rem;
+  }
+  .Player {
+    width: 15%;
+  }
+  .Icon {
+    font-size: 0.8rem;
+    margin-left: -5px;
+  }
+  .Player h2,
+  .Board-Selector,
+  .Hidden-Selector,
+  .Board-Selector,
+  .Message {
+    font-size: 1.5rem;
+  }
+  .NameForm input,
+  .Drop-Down {
+    font-size: 1.2rem;
+  }
+  .Drop-Down,
+  .Icon-Changer,
+  .NameForm button {
+    font-size: 0.8rem;
+  }
+
+  .Reset-Btn {
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .Board {
+    height: 40vh;
+    width: 40vh;
+  }
+  .Board-Selector {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 867px) {
+  .Board {
+    height: 40vh;
+    width: 40vh;
+  }
+  .Board-Selector,
+  .Hidden-Selector,
+  .Message {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 589px) {
+  .Board {
+    height: 35vh;
+    width: 35vh;
+  }
+  header {
+    font-size: 1.5rem;
+  }
+  .Player h2 {
+    margin-bottom: 40%;
+    font-size: 1rem;
+  }
+  .Score h3 {
+    font-size: 2rem;
+  }
+  .Player {
+    height: 60%;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .Board {
+    height: 20vh;
+    width: 20vh;
+  }
+  .Player h2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .Icon {
+    width: 20%;
+    height: 20%;
+    font-size: 0.6rem;
+    border-radius: 10%;
+    text-align: center;
+  }
+  .Score h3 {
+    font-size: 1.5rem;
+  }
+  .Turn {
+    font-size: 0.8rem;
+  }
+
+  .NameForm input,
+  .Icon-Changer,
+  .NameForm button {
+    font-size: 0.5rem;
+  }
+  .Board-Selector {
+    font-size: 0.9rem;
+  }
+}

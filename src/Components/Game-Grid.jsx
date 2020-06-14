@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 import PlayerOne from "./PlayerOne";
 import PlayerTwo from "./PlayerTwo";
-import GridSelector from "./GridSelector";
+import BoardSelector from "./BoardSelector";
 class GameGrid extends React.Component {
   state = {
     boardSize: 9,
@@ -241,11 +241,11 @@ class GameGrid extends React.Component {
           winner={winner}
         />
         <div className="Board-Wrapper">
-          <GridSelector
+          <BoardSelector
             handleboardSize={this.handleboardSize}
             counter={counter}
           />
-          <div className={`Board-${boardSize}`}>
+          <div className={`Board-${boardSize} Board`}>
             {board.map((boardBox, index) => {
               console.log(index + 1);
               return (
@@ -266,16 +266,18 @@ class GameGrid extends React.Component {
             })}
           </div>
           <button className="Reset-Btn" onClick={this.handleReset}>
-            reset
+            Reset
           </button>
           {winner !== undefined && (
-            <p>
-              {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} Wins!
+            <p className="Message">
+              {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} WINS!
             </p>
           )}
-          {counter === board.length && <p>Draw!</p>}
+          {counter === board.length && <p className="Message">Draw!</p>}
           {counter === 0 && (
-            <p>(optional) change character once before starting round </p>
+            <p className="Message">
+              Optional-(change weapon once before starting round){" "}
+            </p>
           )}
         </div>
         <PlayerTwo

@@ -15,10 +15,13 @@ const PlayerOne = (props) => {
       <h2>
         {name.toUpperCase()} <span className="Icon">{!icon ? "X" : icon}</span>
       </h2>
-
       <form className="NameForm" onSubmit={handleNameSubmit} name="player1">
         <label>
-          <input onChange={handleNameChange} name="playerOneInput"></input>
+          <input
+            onChange={handleNameChange}
+            name="playerOneInput"
+            maxLength="10"
+          ></input>
         </label>
         <button>Change Name</button>
       </form>
@@ -27,9 +30,8 @@ const PlayerOne = (props) => {
           className="Icon-Changer"
           onChange={handleIconChange}
           name="player1"
-          maxLength="2"
-          minLength="1"
-          placeholder="Change character"
+          maxLength="3"
+          placeholder="Weapon"
         ></input>
       </label>
       <div className="Score">

@@ -1,10 +1,10 @@
 import React from "react";
 
-const GridSelector = (props) => {
+const BoardSelector = (props) => {
   const { handleboardSize, counter } = props;
   return (
-    <div className={counter === 0 ? "Grid-Selector" : "Hidden-Selector"}>
-      <p>Please select your grid size</p>
+    <div className={counter === 0 ? "Board-Selector" : "Hidden-Selector"}>
+      <p>Please select board size</p>
       <select className="Drop-Down" onChange={handleboardSize}>
         <option>3</option>
         <option>5</option>
@@ -15,4 +15,4 @@ const GridSelector = (props) => {
   );
 };
 
-export default GridSelector;
+export default BoardSelector;
