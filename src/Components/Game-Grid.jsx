@@ -7,8 +7,8 @@ class GameGrid extends React.Component {
   state = {
     boardSize: 9,
     board: ["", "", "", "", "", "", "", "", ""],
-    player1: { name: "player1", icon: "X", gamesWon: 0 },
-    player2: { name: "player2", icon: "O", gamesWon: 0 },
+    player1: { name: "Player1", icon: "X", gamesWon: 0 },
+    player2: { name: "Player2", icon: "O", gamesWon: 0 },
     playerOneInput: "",
     playerTwoInput: "",
     counter: 0,
