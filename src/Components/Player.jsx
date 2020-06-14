@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayerOne = (props) => {
+const Player = (props) => {
   const {
     handleNameChange,
     handleIconChange,
@@ -8,7 +8,9 @@ const PlayerOne = (props) => {
     winner,
     counter,
   } = props;
-  const { name, icon, gamesWon } = props.player1;
+
+  const player = props.player1 ? "player1" : "player2";
+  const { name, icon, gamesWon } = props[player];
 
   return (
     <div className="Player">
@@ -18,11 +20,11 @@ const PlayerOne = (props) => {
         </h2>
       </div>
       <div className="Player-Details">
-        <form className="NameForm" onSubmit={handleNameSubmit} name="player1">
+        <form className="NameForm" onSubmit={handleNameSubmit} name={player}>
           <label>
             <input
               onChange={handleNameChange}
-              name="playerOneInput"
+              name={`${player}Input`}
               maxLength="10"
             ></input>
           </label>
@@ -30,11 +32,11 @@ const PlayerOne = (props) => {
         </form>
         <div className="Weapon-Changer">
           <label>
-            <span>Weapon: </span>
+            <span>Weapon Change </span>
             <input
               className="Weapon-Input"
               onChange={handleIconChange}
-              name="player1"
+              name={`${player}`}
               maxLength="3"
               placeholder="Type Here"
             ></input>
@@ -50,11 +52,11 @@ const PlayerOne = (props) => {
         {winner === undefined && (counter % 2 === 0 || counter === 0) ? (
           <p className="Turn">Your Turn</p>
         ) : (
-          <p></p>
+          <p className="No-Turn"></p>
         )}
       </div>
     </div>
   );
 };
 
-export default PlayerOne;
+export default Player;

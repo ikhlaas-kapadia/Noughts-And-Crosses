@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
-import PlayerOne from "./PlayerOne";
-import PlayerTwo from "./PlayerTwo";
+import Player from "./Player";
 import BoardSelector from "./BoardSelector";
 class GameGrid extends React.Component {
   state = {
@@ -9,8 +8,8 @@ class GameGrid extends React.Component {
     board: ["", "", "", "", "", "", "", "", ""],
     player1: { name: "Player1", icon: "X", gamesWon: 0 },
     player2: { name: "Player2", icon: "O", gamesWon: 0 },
-    playerOneInput: "",
-    playerTwoInput: "",
+    player1Input: "",
+    player2Input: "",
     counter: 0,
     winCombinations: [],
     winningPattern: [],
@@ -37,10 +36,10 @@ class GameGrid extends React.Component {
   };
 
   handleNameSubmit = (e) => {
-    const { playerOneInput, playerTwoInput } = this.state;
+    const { player1Input, player2Input } = this.state;
     e.preventDefault();
     const { name } = e.target;
-    const playerInput = name === "player1" ? playerOneInput : playerTwoInput;
+    const playerInput = name === "player1" ? player1Input : player2Input;
     console.log(playerInput);
     const updatedPlayer = { ...this.state[name] };
     updatedPlayer.name = playerInput;
@@ -232,7 +231,7 @@ class GameGrid extends React.Component {
     console.log(winningPattern);
     return (
       <section>
-        <PlayerOne
+        <Player
           player1={player1}
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}
@@ -280,7 +279,7 @@ class GameGrid extends React.Component {
             </p>
           )}
         </div>
-        <PlayerTwo
+        <Player
           player2={player2}
           handleNameChange={this.handleNameChange}
           handleIconChange={this.handleIconChange}

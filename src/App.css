@@ -3,7 +3,7 @@
 }
 
 header {
-  background-color: #ffff59;
+  background-color: #ffeb38;
   min-height: 5vh;
   height: 15vh;
   display: flex;
@@ -61,7 +61,7 @@ section {
 
 .Box,
 .Winner {
-  background-color: #37d84b;
+  background-color: #ffeb38;
   border: 1px solid rgb(95, 83, 67);
   display: flex;
   align-items: center;
@@ -71,7 +71,7 @@ section {
 }
 
 .Winner {
-  background-color: #ffff59;
+  background-color: #15ff31;
   transform: rotate(360deg);
   transition: transform 1s;
 }
@@ -114,7 +114,7 @@ option {
   width: 20vw;
   height: 70vh;
   margin: auto 2%;
-  background-color: #d8d8d8;
+  background-color: #37d84b;
 }
 
 .Player-Heading {
@@ -133,8 +133,8 @@ option {
   text-align: center;
   border-radius: 10%;
   padding: 5px;
-  width: 20px;
-  background-color: #969696;
+  width: fit-content;
+  background-color: #ffeb38;
   font-size: 1.5rem;
   font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
 }
@@ -170,7 +170,7 @@ option {
   justify-content: center;
 }
 .Weapon-Changer span {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .Weapon-Input {
@@ -203,118 +203,15 @@ option {
 }
 
 .Turn-Box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100px;
 }
-.Turn {
-  background-color: #ffffff8c;
+
+.Turn,
+.No-Turn {
+  background-color: #37d84abd;
   color: #101510;
-  /* border-radius: 40%; */
-  padding: 1%;
   width: 50%;
-  font-size: 1.2rem;
-}
-
-@media only screen and (max-width: 867px) {
-  .Board {
-    text-align: center;
-    height: 70%;
-    width: 80%;
-    font-size: 0.8rem;
-  }
-  .Player {
-    width: 15%;
-  }
-  .Icon {
-    font-size: 0.8rem;
-    margin-left: -5px;
-  }
-  .Player h2,
-  .Board-Selector,
-  .Hidden-Selector,
-  .Board-Selector,
-  .Message {
-    font-size: 1.5rem;
-  }
-  .NameForm input,
-  .Drop-Down {
-    font-size: 1.2rem;
-  }
-  .Drop-Down,
-  .Icon-Changer,
-  .NameForm button {
-    font-size: 0.8rem;
-  }
-
-  .Reset-Btn {
-    font-size: 1rem;
-  }
-}
-
-@media only screen and (max-width: 867px) {
-  .Board {
-    height: 40vh;
-    width: 40vh;
-  }
-  .Board-Selector,
-  .Hidden-Selector,
-  .Message {
-    font-size: 1.5rem;
-  }
-}
-
-@media only screen and (max-width: 589px) {
-  .Board {
-    height: 35vh;
-    width: 35vh;
-  }
-  header {
-    font-size: 1.5rem;
-  }
-  .Player h2 {
-    margin-bottom: 40%;
-    font-size: 1rem;
-  }
-  .Score h3 {
-    font-size: 2rem;
-  }
-  .Player {
-    height: 60%;
-  }
-}
-
-@media only screen and (max-width: 460px) {
-  .Board {
-    height: 20vh;
-    width: 20vh;
-  }
-  .Player h2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .Icon {
-    width: 20%;
-    height: 20%;
-    font-size: 0.6rem;
-    border-radius: 10%;
-    text-align: center;
-  }
-  .Score h3 {
-    font-size: 1.5rem;
-  }
-  .Turn {
-    font-size: 0.8rem;
-  }
-
-  .NameForm input,
-  .Icon-Changer,
-  .NameForm button {
-    font-size: 0.5rem;
-  }
-  .Board-Selector {
-    font-size: 0.9rem;
-  }
+  font-size: 1.3rem;
+  margin: 5px auto;
+  padding: 0;
 }
