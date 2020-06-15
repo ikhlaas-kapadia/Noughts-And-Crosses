@@ -231,14 +231,23 @@ class GameGrid extends React.Component {
     console.log(winningPattern);
     return (
       <section>
-        <Player
-          player1={player1}
-          handleNameChange={this.handleNameChange}
-          handleIconChange={this.handleIconChange}
-          handleNameSubmit={this.handleNameSubmit}
-          counter={counter}
-          winner={winner}
-        />
+        <div className="Player-Box">
+          <Player
+            player1={player1}
+            handleNameChange={this.handleNameChange}
+            handleIconChange={this.handleIconChange}
+            handleNameSubmit={this.handleNameSubmit}
+            counter={counter}
+            winner={winner}
+          />
+          <div className="Turn-Box">
+            {winner === undefined && (counter % 2 === 0 || counter === 0) ? (
+              <p className="Turn">Your Turn</p>
+            ) : (
+              <p className="No-Turn"></p>
+            )}
+          </div>
+        </div>
         <div className="Board-Wrapper">
           <BoardSelector
             handleboardSize={this.handleboardSize}
@@ -272,21 +281,32 @@ class GameGrid extends React.Component {
               {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} WINS!
             </p>
           )}
-          {counter === board.length && <p className="Message">Draw!</p>}
+          {winner === undefined && counter === boardSize && (
+            <p className="Message">Draw!</p>
+          )}
           {counter === 0 && (
             <p className="Message">
               Optional-(change weapon once before starting round){" "}
             </p>
           )}
         </div>
-        <Player
-          player2={player2}
-          handleNameChange={this.handleNameChange}
-          handleIconChange={this.handleIconChange}
-          handleNameSubmit={this.handleNameSubmit}
-          counter={counter}
-          winner={winner}
-        />
+        <div className="Player-Box">
+          <Player
+            player2={player2}
+            handleNameChange={this.handleNameChange}
+            handleIconChange={this.handleIconChange}
+            handleNameSubmit={this.handleNameSubmit}
+            counter={counter}
+            winner={winner}
+          />
+          <div className="Turn-Box">
+            {winner === undefined && counter % 2 !== 0 ? (
+              <p className="Turn">Your Turn</p>
+            ) : (
+              <p className="No-Turn"></p>
+            )}
+          </div>
+        </div>
       </section>
     );
   }

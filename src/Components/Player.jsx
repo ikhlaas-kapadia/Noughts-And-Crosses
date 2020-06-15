@@ -42,18 +42,10 @@ const Player = (props) => {
             ></input>
           </label>
         </div>
-      </div>
-
-      <div className="Score-Container">
-        <h3>SCORE</h3>
-        <span className="Score">{gamesWon}</span>
-      </div>
-      <div className="Turn-Box">
-        {winner === undefined && (counter % 2 === 0 || counter === 0) ? (
-          <p className="Turn">Your Turn</p>
-        ) : (
-          <p className="No-Turn"></p>
-        )}
+        <div className="Score-Container">
+          <h3>SCORE</h3>
+          <span className="Score">{gamesWon}</span>
+        </div>
       </div>
     </div>
   );
