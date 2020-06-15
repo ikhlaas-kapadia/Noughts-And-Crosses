@@ -106,14 +106,19 @@ option {
 }
 
 /* ---- Player Panels ---> */
+
+.Player-Box {
+  /* border: 1px solid red; */
+  height: 70vh;
+  width: 35vw;
+  margin: 2em;
+}
 .Player {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-  padding: 1%;
-  width: 20vw;
-  height: 70vh;
-  margin: auto 2%;
+  /* border: 1px solid black; */
+  height: 100%;
+  width: 100%;
   background-color: #37d84b;
 }
 
@@ -163,9 +168,10 @@ option {
   font-size: 1.5rem;
 }
 .Weapon-Changer {
+  /* border: 1px solid yellow; */
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 40%;
   align-items: center;
   justify-content: center;
 }
@@ -180,7 +186,8 @@ option {
 }
 
 .Score-Container {
-  height: 80%;
+  /* border: 1px solid yellow; */
+  height: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,7 +201,7 @@ option {
 .Score {
   display: inline-block;
   font-size: 4rem;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .Message {
@@ -203,15 +210,19 @@ option {
 }
 
 .Turn-Box {
-  height: 100px;
+  height: 5vh;
+  margin-top: 0;
+  background-color: #37d84b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .Turn,
 .No-Turn {
-  background-color: #37d84abd;
+  background-color: #ffeb38;
+  width: 30%;
   color: #101510;
-  width: 50%;
   font-size: 1.3rem;
-  margin: 5px auto;
-  padding: 0;
 }
