@@ -15,32 +15,31 @@ const Player = (props) => {
   return (
     <div className="Player">
       <div className="Player-Heading">
-        <h2>
-          {name} <span className="Icon">{!icon ? "X" : icon}</span>
-        </h2>
+        <h2> {name} </h2>
+        <span className="Icon">{!icon ? "X" : icon}</span>
       </div>
       <div className="Player-Details">
         <form className="NameForm" onSubmit={handleNameSubmit} name={player}>
-          <label>
-            <input
-              onChange={handleNameChange}
-              name={`${player}Input`}
-              maxLength="10"
-            ></input>
-          </label>
+          <label for={`${player}Input`}></label>
+          <input
+            className="Name-Input"
+            onChange={handleNameChange}
+            name={`${player}Input`}
+            maxLength="10"
+            placeholder="Type Here"
+          ></input>
           <button>Change Name</button>
         </form>
         <div className="Weapon-Changer">
-          <label>
-            <span>Weapon Change </span>
-            <input
-              className="Weapon-Input"
-              onChange={handleIconChange}
-              name={`${player}`}
-              maxLength="3"
-              placeholder="Type Here"
-            ></input>
-          </label>
+          <label for={`${player}`}></label>
+          <span>Weapon Change </span>
+          <input
+            className="Weapon-Input"
+            onChange={handleIconChange}
+            name={`${player}`}
+            maxLength="3"
+            placeholder="Type Here"
+          ></input>
         </div>
         <div className="Score-Container">
           <h3>SCORE</h3>

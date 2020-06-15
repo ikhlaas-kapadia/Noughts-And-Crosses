@@ -1,20 +1,30 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
-
 header {
   background-color: #ffeb38;
-  min-height: 5vh;
   height: 15vh;
+  width: 100%;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.2em;
   color: #101510;
+}
+header h1 {
+  margin: 0;
 }
 
 section {
+  margin: 0;
   background-color: #8cfd73;
   display: flex;
   flex-direction: row;
@@ -24,18 +34,149 @@ section {
   align-items: center;
   color: #420c14;
 }
+
+/* ---- Player Panels ---> */
+
+.Player-Box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  height: 80%;
+  width: 25%;
+  margin: 0.5em;
+  border: 1px solid black;
+}
+.Player {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  height: 100%;
+  width: 100%;
+  background-color: #37d84b;
+}
+
+.Player-Heading {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Player-Heading h2 {
+  letter-spacing: 0.1rem;
+  font-size: 1.5em;
+  padding: 0 10%;
+}
+.Icon {
+  border: 1px black solid;
+  text-align: center;
+  border-radius: 10%;
+  padding: 0.2em;
+  width: fit-content;
+  background-color: #ffeb38;
+  font-size: 1em;
+  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.Player-Details {
+  /* border: 1px solid red; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.NameForm {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.Name-Input,
+.Weapon-Input {
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  font-family: inherit;
+  font-size: 1em;
+  width: 100%;
+}
+.NameForm button {
+  margin-top: 2%;
+  width: 85%;
+  font-family: inherit;
+  font-size: 0.8em;
+}
+.Weapon-Changer {
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  align-items: center;
+  justify-content: center;
+}
+.Weapon-Changer span {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.9em;
+  width: 100%;
+}
+
+.Score-Container {
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Score-Container h3 {
+  font-size: 2em;
+  color: #101510;
+  margin: 0;
+}
+.Score {
+  display: inline-block;
+  font-size: 3.5em;
+  /* margin: 0; */
+}
+
+.Message {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.Turn-Box {
+  box-sizing: border-box;
+  border: 1px solid red;
+  height: 4vh;
+  margin-top: 0;
+  background-color: #37d84b;
+}
+
+.Turn,
+.No-Turn {
+  margin: 0;
+  background-color: #ffeb38;
+  width: 100%;
+  color: #101510;
+  font-size: 1.3rem;
+}
+
+/* <------ BOARD -----> */
 .Board-Wrapper {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   height: 100%;
   width: 60%;
   align-items: center;
 }
 .Board {
+  border: 1px solid black;
   display: grid;
   height: 55vh;
-  width: 60vh;
+  width: 35vw;
   grid-gap: 15px;
   font-size: 1rem;
 }
@@ -83,11 +224,12 @@ section {
 .Drop-Down {
   height: 50%;
   margin-left: 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .Board-Selector,
 .Hidden-Selector {
+  border: 1px solid red;
   font-size: 1.6rem;
   display: flex;
   flex-direction: row;
@@ -103,126 +245,4 @@ option {
 }
 .Box-Content {
   font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-/* ---- Player Panels ---> */
-
-.Player-Box {
-  /* border: 1px solid red; */
-  height: 70vh;
-  width: 35vw;
-  margin: 2em;
-}
-.Player {
-  display: flex;
-  flex-direction: column;
-  /* border: 1px solid black; */
-  height: 100%;
-  width: 100%;
-  background-color: #37d84b;
-}
-
-.Player-Heading {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.Player-Heading h2 {
-  letter-spacing: 0.1rem;
-  font-size: 2rem;
-}
-.Icon {
-  display: inline-block;
-  border: 1px black solid;
-  text-align: center;
-  border-radius: 10%;
-  padding: 5px;
-  width: fit-content;
-  background-color: #ffeb38;
-  font-size: 1.5rem;
-  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
-}
-.Player-Details {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-.NameForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-.NameForm input {
-  font-family: inherit;
-  font-size: 1.5rem;
-  width: inherit;
-}
-.NameForm button {
-  margin-top: 2%;
-  width: fit-content;
-  font-family: inherit;
-  font-size: 1.5rem;
-}
-.Weapon-Changer {
-  /* border: 1px solid yellow; */
-  display: flex;
-  flex-direction: column;
-  height: 40%;
-  align-items: center;
-  justify-content: center;
-}
-.Weapon-Changer span {
-  font-size: 1.7rem;
-}
-
-.Weapon-Input {
-  font-family: inherit;
-  font-size: 1.5rem;
-  width: inherit;
-}
-
-.Score-Container {
-  /* border: 1px solid yellow; */
-  height: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.Score-Container h3 {
-  font-size: 3rem;
-  color: #101510;
-  margin: 0;
-}
-.Score {
-  display: inline-block;
-  font-size: 4rem;
-  /* margin: 0; */
-}
-
-.Message {
-  margin-top: 10px;
-  font-size: 1.5rem;
-}
-
-.Turn-Box {
-  height: 5vh;
-  margin-top: 0;
-  background-color: #37d84b;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.Turn,
-.No-Turn {
-  background-color: #ffeb38;
-  width: 30%;
-  color: #101510;
-  font-size: 1.3rem;
 }
