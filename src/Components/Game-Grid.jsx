@@ -278,19 +278,21 @@ class GameGrid extends React.Component {
           <button className="Reset-Btn" onClick={this.handleReset}>
             Reset
           </button>
-          {winner !== undefined && (
-            <p className="Message">
-              {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} WINS!
-            </p>
-          )}
-          {winner === undefined && counter === boardSize && (
-            <p className="Message">Draw!</p>
-          )}
-          {counter === 0 && (
-            <p className={counter === 0 ? "Message" : "No-Message"}>
-              Optional-(change weapon once before starting round){" "}
-            </p>
-          )}
+          <div className="Message-Box">
+            {winner !== undefined && (
+              <p className="Message">
+                {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} WINS!
+              </p>
+            )}
+            {winner === undefined && counter === boardSize && (
+              <p className="Message">Draw!</p>
+            )}
+            {counter === 0 && (
+              <p className={counter === 0 ? "Message" : "No-Message"}>
+                Optional-(change weapon once before starting round){" "}
+              </p>
+            )}
+          </div>
         </div>
         <div className="Player-Box">
           <Player

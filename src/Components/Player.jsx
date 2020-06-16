@@ -18,35 +18,33 @@ const Player = (props) => {
         <h2> {name} </h2>
         <span className="Icon">{!icon ? "X" : icon}</span>
       </div>
-      <div className="Player-Info">
-        <div className="Player-Details">
-          <form className="NameForm" onSubmit={handleNameSubmit} name={player}>
-            <label for={`${player}Input`}></label>
-            <input
-              className="Name-Input"
-              onChange={handleNameChange}
-              name={`${player}Input`}
-              maxLength="10"
-              placeholder="Type Here"
-            ></input>
-            <button>Change Name</button>
-          </form>
-          <div className="Weapon-Changer">
-            <label for={`${player}`}></label>
-            <span>Weapon Change </span>
-            <input
-              className="Weapon-Input"
-              onChange={handleIconChange}
-              name={`${player}`}
-              maxLength="3"
-              placeholder="Type Here"
-            ></input>
-          </div>
+      <div className="Player-Details">
+        <form className="NameForm" onSubmit={handleNameSubmit} name={player}>
+          <label for={`${player}Input`}></label>
+          <input
+            className="Name-Input"
+            onChange={handleNameChange}
+            name={`${player}Input`}
+            maxLength="10"
+            placeholder="Type Here"
+          ></input>
+          <button>Change Name</button>
+        </form>
+        <div className="Weapon-Changer">
+          <label for={`${player}`}></label>
+          <span>Weapon Change </span>
+          <input
+            className="Weapon-Input"
+            onChange={handleIconChange}
+            name={`${player}`}
+            maxLength="3"
+            placeholder="Type Here"
+          ></input>
         </div>
-        <div className="Score-Container">
-          <h3>SCORE</h3>
-          <span className="Score">{gamesWon}</span>
-        </div>
+      </div>
+      <div className="Score-Container">
+        <h3>SCORE</h3>
+        <span className="Score">{gamesWon}</span>
       </div>
     </div>
   );
