@@ -287,7 +287,7 @@ class GameGrid extends React.Component {
             <p className="Message">Draw!</p>
           )}
           {counter === 0 && (
-            <p className="Message">
+            <p className={counter === 0 ? "Message" : "No-Message"}>
               Optional-(change weapon once before starting round){" "}
             </p>
           )}

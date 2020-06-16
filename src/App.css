@@ -1,4 +1,4 @@
-.App {
+# .App {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -35,7 +35,7 @@ section {
   color: #420c14;
 }
 
-/* ---- Player Panels ---> */
+/* —— Player Panels —> */
 
 .Player-Box {
   box-sizing: border-box;
@@ -66,10 +66,9 @@ section {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  height: 40%;
+  justify-content: flex-start;
+  height: 30%;
   width: 100%;
 }
 .Player-Heading h2 {
@@ -77,12 +76,13 @@ section {
   /* border: 1px solid yellow; */
   text-align: center;
   letter-spacing: 0.1rem;
-  font-size: 1.3em;
+  font-size: 1.1em;
   width: 90%;
   word-wrap: break-word;
-  height: 45%;
-  margin: 0;
-  padding: 0;
+  height: 40%;
+  /* margin: 0; */
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 .Icon {
   box-sizing: border-box;
@@ -93,7 +93,7 @@ section {
   width: fit-content;
   background-color: #ffeb38;
   font-size: 1em;
-  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Roboto, “Open Sans”, “Helvetica Neue”, sans-serif;
 }
 .Player-Details {
   /* border: 1px solid red; */
@@ -124,7 +124,8 @@ section {
   margin-top: 2%;
   width: 90%;
   font-family: inherit;
-  font-size: 0.7em;
+  font-size: 0.8em;
+  padding: 0;
 }
 .Weapon-Changer {
   /* border: 1px solid yellow; */
@@ -138,8 +139,9 @@ section {
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 0.9em;
   width: 100%;
+  padding: 0;
 }
 
 .Score-Container {
@@ -162,9 +164,8 @@ section {
 
 .Turn-Box {
   box-sizing: border-box;
-  height: 3.5vh;
+  height: 5%;
   width: 100%;
-  margin: 0 auto;
   background-color: #37d84a;
   text-align: center;
 }
@@ -178,24 +179,28 @@ section {
   height: 100%;
   width: 100%;
   color: #101510;
-  font-size: 1.3em;
+  font-size: 1.1em;
+  padding: 0;
 }
 .Turn {
   background-color: #ffeb38;
 }
 
-/* <------ BOARD -----> */
+/* <——— BOARD ——> */
 .Board-Wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 100%;
   width: 60%;
   align-items: center;
 }
 .Board-Selector,
 .Hidden-Selector {
+  /* border: 1px solid red; */
   padding-top: 3em;
-  height: 15%;
+  height: 10%;
+  min-height: 10%;
   text-align: center;
   font-size: 1em;
 }
@@ -210,16 +215,16 @@ option {
 
 .Drop-Down {
   font-family: inherit;
-  height: 30%;
-  font-size: 1.2em;
+  height: 40%;
+  font-size: 1em;
 }
 
 .Board {
   box-sizing: border-box;
   display: grid;
-  height: 30%;
+  height: 35%;
   width: 100%;
-  grid-gap: 0.6em;
+  grid-gap: 0.8em;
   padding: 0.2em;
 }
 .Board-9 {
@@ -235,11 +240,15 @@ option {
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(7, 1fr);
   font-size: 0.5rem;
+  height: 40%;
+  grid-gap: 0.6em;
 }
 .Board-81 {
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
   font-size: 0.5rem;
+  grid-gap: 0.6em;
+  height: 50%;
 }
 
 .Box,
@@ -260,16 +269,26 @@ option {
 }
 
 .Reset-Btn {
-  font-size: 1em;
+  font-size: 0.7em;
   margin-top: 0.8em;
 }
 
 .Box-Content {
-  font-family: Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Roboto, “Open Sans”, “Helvetica Neue”, sans-serif;
 }
 
-.Message {
+.Message, .No-Message {
   text-align: center;
   margin-top: 1em;
-  font-size: 1.2em;
+  font-size: 1em;
 }
+.No-Message {
+  color: transparent;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+
