@@ -241,7 +241,9 @@ class GameGrid extends React.Component {
             winner={winner}
           />
           <div className="Turn-Box">
-            {winner === undefined && (counter % 2 === 0 || counter === 0) ? (
+            {winner === undefined &&
+            (counter % 2 === 0 || counter === 0) &&
+            counter !== boardSize ? (
               <p className="Turn">Your Turn</p>
             ) : (
               <p className="No-Turn"></p>
@@ -300,7 +302,9 @@ class GameGrid extends React.Component {
             winner={winner}
           />
           <div className="Turn-Box">
-            {winner === undefined && counter % 2 !== 0 ? (
+            {winner === undefined &&
+            counter % 2 !== 0 &&
+            counter !== boardSize ? (
               <p className="Turn">Your Turn</p>
             ) : (
               <p className="No-Turn"></p>

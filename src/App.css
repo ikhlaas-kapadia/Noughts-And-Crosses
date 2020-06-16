@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: absolute;
   left: 0;
   right: 0;
@@ -29,8 +29,8 @@ section {
   display: flex;
   flex-direction: row;
   height: 85vh;
-  width: 100%;
-  justify-items: center;
+  width: 100vw;
+
   align-items: center;
   color: #420c14;
 }
@@ -38,39 +38,57 @@ section {
 /* ---- Player Panels ---> */
 
 .Player-Box {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
-  height: 80%;
-  width: 25%;
-  margin: 0.5em;
+  height: 75vh;
+  width: 22vw;
+  max-width: 22vw;
+  max-height: 75vh;
+  min-width: 22vw;
+  min-height: 75vh;
+  margin: 0.3em;
   border: 1px solid black;
 }
 .Player {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid black; */
+  /* border: 1px solid red; */
   height: 100%;
   width: 100%;
   background-color: #37d84b;
 }
 
 .Player-Heading {
-  /* border: 1px solid black; */
+  overflow-x: hidden;
+  /* border: 1px solid blue; */
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  height: 40%;
+  width: 100%;
 }
 .Player-Heading h2 {
+  box-sizing: border-box;
+  /* border: 1px solid yellow; */
+  text-align: center;
   letter-spacing: 0.1rem;
-  font-size: 1.5em;
-  padding: 0 10%;
+  font-size: 1.3em;
+  width: 90%;
+  word-wrap: break-word;
+  height: 45%;
+  margin: 0;
+  padding: 0;
 }
 .Icon {
+  box-sizing: border-box;
   border: 1px black solid;
-  text-align: center;
   border-radius: 10%;
+  margin: 0;
   padding: 0.2em;
   width: fit-content;
   background-color: #ffeb38;
@@ -98,14 +116,15 @@ section {
   box-sizing: border-box;
   /* border: 1px solid black; */
   font-family: inherit;
-  font-size: 1em;
-  width: 100%;
+  font-size: 0.9em;
+  width: 98%;
+  margin: 0 auto;
 }
 .NameForm button {
   margin-top: 2%;
   width: 90%;
   font-family: inherit;
-  font-size: 0.9em;
+  font-size: 0.7em;
 }
 .Weapon-Changer {
   /* border: 1px solid yellow; */
@@ -119,7 +138,7 @@ section {
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
-  font-size: 0.9em;
+  font-size: 0.8em;
   width: 100%;
 }
 
