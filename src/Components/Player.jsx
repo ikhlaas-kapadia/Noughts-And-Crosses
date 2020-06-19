@@ -32,13 +32,13 @@ const Player = (props) => {
         </form>
         <div className="Weapon-Changer">
           <label for={`${player}`}></label>
-          <span>Weapon Change </span>
+          {/* <span>Weapon Change </span> */}
           <input
             className="Weapon-Input"
             onChange={handleIconChange}
             name={`${player}`}
             maxLength="3"
-            placeholder="Type Here"
+            placeholder="Type Weapon Here"
           ></input>
         </div>
       </div>
