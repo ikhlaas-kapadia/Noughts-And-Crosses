@@ -18,14 +18,10 @@ class GameGrid extends React.Component {
   handleboardSize = (e) => {
     const { value } = e.target;
     const newboardSize = Math.pow(value, 2);
-    if (value % 2 === 0) {
-      return;
-    } else {
-      this.setState({
-        boardSize: newboardSize,
-        board: [...Array(newboardSize)],
-      });
-    }
+    this.setState({
+      boardSize: newboardSize,
+      board: [...Array(newboardSize)],
+    });
   };
 
   handleNameChange = (e) => {
@@ -280,16 +276,17 @@ class GameGrid extends React.Component {
           </button>
           <div className="Message-Box">
             {winner !== undefined && (
-              <p className="Message">
+              <p className="Message Win-Message">
                 {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} WINS!
               </p>
             )}
             {winner === undefined && counter === boardSize && (
-              <p className="Message">Draw!</p>
+              <p className="Message Win-Message">Draw!</p>
             )}
             {counter === 0 && (
-              <p className={counter === 0 ? "Message" : "No-Message"}>
-                Optional-(change weapon once before starting round){" "}
+              <p className={counter === 0 ? "Message " : "No-Message"}>
+                Optional-(change weapon once before starting round).<br></br>
+                Start game by clicking any board box.
               </p>
             )}
           </div>
