@@ -10,6 +10,8 @@ class GameGrid extends React.Component {
     player2: { name: "Player2", icon: "O", gamesWon: 0 },
     player1Input: "",
     player2Input: "",
+    player1Icon: "",
+    player2Icon: "",
     counter: 0,
     winCombinations: [],
     winningPattern: [],
@@ -24,7 +26,7 @@ class GameGrid extends React.Component {
     });
   };
 
-  handleNameChange = (e) => {
+  handleInputChange = (e) => {
     const { value, name } = e.target;
     this.setState({
       [name]: value,
@@ -36,19 +38,19 @@ class GameGrid extends React.Component {
     e.preventDefault();
     const { name } = e.target;
     const playerInput = name === "player1" ? player1Input : player2Input;
-    console.log(playerInput);
     const updatedPlayer = { ...this.state[name] };
     updatedPlayer.name = playerInput;
-    this.setState({ [name]: updatedPlayer });
+    this.setState({ [name]: updatedPlayer, [`${name}Input`]: "" });
   };
-  handleIconChange = (e) => {
-    const { value, name } = e.target;
-    console.log(name, value);
+
+  handleIconSubmit = (e) => {
+    const { player1Icon, player2Icon } = this.state;
+    e.preventDefault();
+    const { name } = e.target;
+    const playerInput = name === "player1" ? player1Icon : player2Icon;
     const updatedPlayer = { ...this.state[name] };
-    updatedPlayer.icon = value;
-    this.setState({
-      [name]: updatedPlayer,
-    });
+    updatedPlayer.icon = playerInput;
+    this.setState({ [name]: updatedPlayer, [`${name}Icon`]: "" });
   };
   handleReset = (e) => {
     const { boardSize, rounds } = this.state;
@@ -157,7 +159,6 @@ class GameGrid extends React.Component {
     generateHorizontalWins();
     generateVerticalWins();
     generateDiagonalWins();
-    console.log(winCombinations);
     this.setState({ winCombinations: winCombinations });
   };
 
@@ -224,14 +225,13 @@ class GameGrid extends React.Component {
       counter,
       winningPattern,
     } = this.state;
-    console.log(winningPattern);
     return (
       <section>
         <div className="Player-Box">
           <Player
             player1={player1}
-            handleNameChange={this.handleNameChange}
-            handleIconChange={this.handleIconChange}
+            handleInputChange={this.handleInputChange}
+            handleIconSubmit={this.handleIconSubmit}
             handleNameSubmit={this.handleNameSubmit}
             counter={counter}
             winner={winner}
@@ -242,7 +242,7 @@ class GameGrid extends React.Component {
             counter !== boardSize ? (
               <p className="Turn">Your Turn</p>
             ) : (
-              <p className="No-Turn"></p>
+              <p className="No-Turn">Your Turn</p>
             )}
           </div>
         </div>
@@ -253,7 +253,6 @@ class GameGrid extends React.Component {
           />
           <div className={`Board-${boardSize} Board`}>
             {board.map((boardBox, index) => {
-              console.log(index + 1);
               return (
                 <div
                   id={`box-${index + 1}`}
@@ -294,9 +293,9 @@ class GameGrid extends React.Component {
         <div className="Player-Box">
           <Player
             player2={player2}
-            handleNameChange={this.handleNameChange}
-            handleIconChange={this.handleIconChange}
+            handleInputChange={this.handleInputChange}
             handleNameSubmit={this.handleNameSubmit}
+            handleIconSubmit={this.handleIconSubmit}
             counter={counter}
             winner={winner}
           />
@@ -306,7 +305,7 @@ class GameGrid extends React.Component {
             counter !== boardSize ? (
               <p className="Turn">Your Turn</p>
             ) : (
-              <p className="No-Turn"></p>
+              <p className="No-Turn">Your Turn</p>
             )}
           </div>
         </div>

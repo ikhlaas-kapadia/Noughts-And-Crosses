@@ -2,11 +2,11 @@ import React from "react";
 
 const Player = (props) => {
   const {
-    handleNameChange,
-    handleIconChange,
+    handleInputChange,
     handleNameSubmit,
-    winner,
+    handleIconSubmit,
     counter,
+    winner,
   } = props;
 
   const player = props.player1 ? "player1" : "player2";
@@ -23,24 +23,30 @@ const Player = (props) => {
           <label for={`${player}Input`}></label>
           <input
             className="Name-Input"
-            onChange={handleNameChange}
+            onChange={handleInputChange}
             name={`${player}Input`}
             maxLength="10"
             placeholder="Type Here"
           ></input>
-          <button>Change Name</button>
+          <button className="Change-Button">Change Name</button>
         </form>
-        <div className="Weapon-Changer">
+        <form
+          className="Weapon-Changer"
+          onSubmit={handleIconSubmit}
+          name={player}
+        >
           <label for={`${player}`}></label>
           {/* <span>Weapon Change </span> */}
           <input
             className="Weapon-Input"
-            onChange={handleIconChange}
-            name={`${player}`}
-            maxLength="3"
-            placeholder="Type Weapon Here"
-          ></input>
-        </div>
+            onChange={handleInputChange}
+            name={`${player}Icon`}
+            minLength="1"
+            maxLength="2"
+            placeholder="Type Weapon"
+          />
+          <button className="Change-Button">Change Weapon</button>
+        </form>
       </div>
       <div className="Score-Container">
         <h3>SCORE</h3>
