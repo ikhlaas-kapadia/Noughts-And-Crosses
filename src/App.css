@@ -54,7 +54,7 @@ section {
   /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
-  height: 90%;
+  height: 85%;
   width: 100%;
   background-color: #37d84b;
   max-height: 90%;
@@ -89,7 +89,7 @@ section {
   width: fit-content;
   min-width: 40%;
   max-width: fit-content;
-  min-height: 30%;
+  min-height: fit-content;
   height: fit-content;
   border: 1px black solid;
   border-radius: 5%;
@@ -180,8 +180,8 @@ section {
 .Turn-Box {
   /* border: 1px solid black; */
   background-color: #37d84a;
-  height: 10%;
-  max-height: 10%;
+  height: 15%;
+  max-height: 15%;
 }
 
 .Turn,
@@ -189,18 +189,17 @@ section {
   vertical-align: text-bottom;
   /* border: 1px solid red; */
   text-align: center;
-  margin: 0;
   background-color: #37d84a;
   height: 100%;
   width: 50%;
   margin: 0 auto;
   color: transparent;
-  font-size: 0.7rem;
   max-height: 100%;
 }
 .Turn {
   background-color: #ffeb38;
   color: #101510;
+  font-size: 1rem;
 }
 
 /* <——— BOARD ——> */
@@ -208,16 +207,15 @@ section {
   /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
-  height: 64%;
+  height: 60%;
   width: 100%;
   align-items: center;
+  justify-content: center;
   font-size: 1em;
 }
 .Board-Selector,
 .Hidden-Selector {
   /* border: 1px solid yellow; */
-  padding-top: 0;
-  margin-bottom: 1%;
   width: 100%;
   text-align: center;
   min-width: 100%;
@@ -236,19 +234,21 @@ option {
 }
 
 .Drop-Down {
+  font-size: 1rem;
   font-family: inherit;
-  font-size: 0.8rem;
-  height: 70%;
+  height: fit-content;
 }
 
 .Board {
   /* border: 1px solid red; */
   display: grid;
-  height: 100%;
-  width: 80%;
-  grid-gap: 0.2em;
-  font-size: 1em;
-  max-height: 100%;
+  /* min-width: 70%; */
+  grid-gap: 2%;
+  font-size: 1rem;
+  /* max-height: 100%; */
+  justify-content: center;
+  height: 180px;
+  width: 180px;
 }
 .Board-9 {
   grid-template-columns: repeat(3, 1fr);
@@ -288,6 +288,8 @@ option {
 
 .Box,
 .Winner {
+  width: 100%;
+  height: 100%;
   background-color: #ffeb38;
   border: 1px solid rgb(95, 83, 67);
   display: flex;
@@ -300,23 +302,28 @@ option {
   background-color: #15ff31;
   transform: rotate(360deg);
   transition: transform 1s;
+  animation: blinker 1s;
+  animation-iteration-count: 4;
 }
 
 .Reset-Btn {
   border: 1px solid black;
-  font-size: 0.7em;
-  margin: 0.4em;
+  font-size: 0.9rem;
+  margin: 0.35rem;
 }
 
 .Box-Content {
   font-family: Roboto, “Open Sans”, “Helvetica Neue”, sans-serif;
 }
 .Message-Box {
-  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
+  justify-content: center;
   /* height: 20%; */
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   min-height: 10%;
   max-height: 10%;
 }
@@ -327,57 +334,48 @@ option {
   padding: 0;
   width: 100%;
   height: 100%;
-  line-height: 1.2em;
+  line-height: 0.9rem;
   text-align: center;
 }
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 .Win-Message {
-  font-size: 2rem;
+  padding-top: 2%;
+  font-size: 1.5rem;
+  animation: blinker 1s;
+  animation-iteration-count: 4;
 }
 .No-Message {
   color: transparent;
 }
-@media only screen and (min-width: 411px) {
-  .Player-Heading h2 {
-    font-size: 1.5rem;
-  }
 
-  .Name-Input,
-  .Weapon-Input {
-    font-size: 1.2rem;
+/* @media only screen and (min-width: 421px) {
+  .Board {
+    width: 55%;
   }
-  .Weapon-Input {
-    font-size: 1.2rem;
-  }
-  .Change-Button {
-    font-size: 1rem;
-  }
-  .Score-Container h3 {
-    font-size: 2.5rem;
-  }
-  .Score {
-    font-size: 4rem;
-  }
-
-  .Turn {
-    font-size: 0.8rem;
-  }
-  .Board-Selector {
-    font-size: 1.2rem;
-  }
-  .Message {
-    font-size: 1rem;
-  }
-  .Reset-Btn {
-    font-size: 0.8rem;
+} */
+@media only screen and (min-width: 350px) {
+  .Board {
+    width: 230px;
+    height: 230px;
   }
 }
-@media only screen and (min-width: 440px) {
-  body {
-    font-size: 1em;
+@media only screen and (min-width: 411px) {
+  html {
+    font-size: 1.1em;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 1.1em;
   }
   header {
     height: 15vh;
-    font-size: 1.5rem;
   }
 
   section {
@@ -398,7 +396,9 @@ option {
     min-height: 90%;
   }
   .Player {
-    height: 100%;
+    border: 1px solid blue;
+    height: 95%;
+    min-height: 95%;
     flex-direction: column;
   }
   .Player-Heading {
@@ -413,13 +413,11 @@ option {
     height: 50%;
     width: 90%;
     /* border: 1px solid yellow; */
-    font-size: 1.5rem;
     margin: 0;
   }
   .Icon {
     width: 100%;
     border: 1px black solid;
-    font-size: 1.3rem;
   }
   .Player-Details {
     /* border: 1px solid red; */
@@ -434,13 +432,9 @@ option {
     /* border: 1px solid black; */
     width: 90%;
     height: 40%;
-    font-size: 1rem;
   }
-  .Weapon-Input {
-    font-size: 0.9rem;
-  }
+
   .Change-Button {
-    font-size: 0.9rem;
     width: 90%;
     height: 30%;
   }
@@ -453,236 +447,75 @@ option {
     width: 100%;
     height: 50%;
   }
-  .Score-Container h3 {
-    font-size: 2.5rem;
-  }
 
   .Turn-Box {
-    min-height: 6%;
+    border: 1px solid red;
+    height: fit-content;
+    height: 5%;
+    margin: 0;
+    padding: 0;
   }
 
   .Turn,
   .No-Turn {
     height: 100%;
     width: 100%;
-    font-size: 1.4rem;
+    text-align: center;
   }
   /* * <——— BOARD ——> */
   .Board-Wrapper {
-    height: 80%;
     width: 60%;
-    max-width: 60%;
-    max-height: 80%;
-    min-width: 60%;
-    min-height: 80%;
-  }
-  .Board-Selector,
-  .Hidden-Selector {
-    margin: 0.4em 0;
-    font-size: 1.1rem;
-  }
-
-  .Drop-Down {
-    font-size: 1rem;
+    min-width: 50%;
+    height: 100%;
+    min-height: none;
+    max-height: 90%;
+    justify-content: space-evenly;
   }
 
   .Board {
-    height: 65%;
-    width: 100%;
+    border: 1px solid red;
+    height: 280px;
+    width: 280px;
     /* border: 1px solid red; */
-    padding: 0.5rem;
     grid-gap: 0.5rem;
+  }
+  .Turn {
+    font-size: 1.1rem;
   }
 
   .Message-Box {
     margin-top: 0.5rem;
-    font-size: 0.9rem;
   }
 
   .Win-Message {
     margin-top: 0.2rem;
-    font-size: 2rem;
   }
 
   .Reset-Btn {
-    font-size: 0.9rem;
     margin: 0.4rem;
   }
 }
 
-@media only screen and (min-width: 640px) {
-  /* —— Player Panels —> */
-
-  .NameForm button {
-    font-size: 1rem;
-    width: 90%;
-    height: 30%;
-  }
-
-  .Score-Container h3 {
-    font-size: 3rem;
-  }
-
-  /* * <——— BOARD ——> */
-
-  .Board-Selector,
-  .Hidden-Selector {
-    margin: 0.4em 0;
-    font-size: 1.2rem;
-  }
-
-  .Drop-Down {
-    font-size: 1rem;
-  }
-
+@media only screen and (min-width: 650px) {
   .Board {
-    height: 70%;
-    width: 90%;
-    padding: 0.5rem;
-    grid-gap: 0.5rem;
-  }
-  .Win-Message {
-    font-size: 3rem;
+    width: 350px;
+    height: 340px;
   }
 }
-
-@media only screen and (min-width: 655px) {
-  /* —— Player Panels —> */
-  .Player-Box {
-    height: 90%;
-    width: 24%;
+@media only screen and (min-width: 750px) {
+  html {
+    font-size: 1.3em;
   }
-  .Player-Heading h2 {
-    font-size: 2rem;
-  }
-  .Icon {
-    font-size: 2rem;
-  }
-
-  .Board-Wrapper {
-    height: 80%;
-    width: 50%;
-    max-width: 50%;
-    max-height: 80%;
-    min-width: 50%;
-    min-height: 80%;
-  }
-
-  .Name-Input,
-  .Weapon-Input {
-    height: 50%;
-    font-size: 1.5rem;
-  }
-  .Weapon-Input {
-    font-size: 1.4rem;
-  }
-  .NameForm button {
-    font-size: 1.4rem;
-    width: 90%;
-    height: 50%;
-  }
-  .Win-Message {
-    font-size: 3rem;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* —— Player Panels —> */
-  .Score {
-    font-size: 6rem;
-  }
-  .Board-Selector {
-    margin-top: 0;
-    font-size: 1.5rem;
-  }
-  .Drop-Down {
-    font-size: 1.4rem;
-  }
-
   .Board {
-    height: 50%;
-  }
-
-  .Message {
-    font-size: 1.3rem;
-  }
-  .Win-Message {
-    font-size: 3rem;
-  }
-  .Turn {
-    font-size: 2rem;
+    width: 390px;
   }
 }
-
 @media only screen and (min-width: 900px) {
-  /* —— Player Panels —> */
-  .Score {
-    font-size: 6rem;
+  html {
+    font-size: 1.4em;
   }
-  .Board-Selector {
-    font-size: 1.3rem;
-  }
-  .Board-Wrapper {
-    width: 45%;
-    max-width: 45%;
-    min-width: 45%;
-  }
-  .Message {
-    font-size: 1.2rem;
-  }
-  .Win-Message {
-    font-size: 3rem;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  .Player-Box {
-    width: 25%;
-  }
-  header {
-    font-size: 3rem;
-  }
-  .Player-Heading h2 {
-    font-size: 3rem;
-  }
-  .Icon {
-    font-size: 3rem;
-  }
-  .Name-Input {
-    font-size: 3rem;
-  }
-  .Weapon-Input {
-    font-size: 2rem;
-  }
-
-  .NameForm button {
-    font-size: 2.5rem;
-  }
-
-  .Score {
-    font-size: 10rem;
-  }
-  .Board-Selector {
-    margin-top: 0;
-    font-size: 2.5rem;
-  }
-  .Drop-Down {
-    font-size: 1.5rem;
-  }
-
   .Board {
-    height: 45%;
-    /* width: 100%; */
-  }
-  .Message {
-    font-size: 1.8rem;
-  }
-  .Reset-Btn {
-    font-size: 1.5rem;
-  }
-  .Turn {
-    font-size: 2.5rem;
-  }
-  .Win-Message {
-    font-size: 4rem;
+    width: 370px;
+    height: 350px;
   }
 }
