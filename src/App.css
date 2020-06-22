@@ -22,6 +22,34 @@ header {
   font-size: 1.2em;
   color: #101510;
 }
+.Mode-Btns-Hidden {
+  display: none;
+}
+.Mode-Btns {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.678);
+}
+.Mode-Btns p {
+  width: 80%;
+  height: 15%;
+  font-size: 1.2rem;
+  font-family: inherit;
+  background-color: #f1f1f1;
+}
+.Mode-Btns button {
+  width: 70%;
+  height: 30%;
+  font-size: 1.5rem;
+  font-family: inherit;
+  background-color: #f1f1f1;
+}
 
 section {
   box-sizing: border-box;
@@ -232,6 +260,10 @@ option {
   background: transparent;
   border: none;
 }
+.Hidden-Selector > select,
+option {
+  display: none;
+}
 
 .Drop-Down {
   font-size: 1rem;
@@ -396,7 +428,7 @@ option {
     min-height: 90%;
   }
   .Player {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     height: 95%;
     min-height: 95%;
     flex-direction: column;
@@ -449,7 +481,7 @@ option {
   }
 
   .Turn-Box {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: fit-content;
     height: 5%;
     margin: 0;
@@ -473,7 +505,7 @@ option {
   }
 
   .Board {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 280px;
     width: 280px;
     /* border: 1px solid red; */
