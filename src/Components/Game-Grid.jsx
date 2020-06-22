@@ -15,6 +15,7 @@ class GameGrid extends React.Component {
     counter: 0,
     winCombinations: [],
     winningPattern: [],
+    ai: true,
   };
 
   handleboardSize = (e) => {
@@ -177,17 +178,61 @@ class GameGrid extends React.Component {
       this.checkWinner();
     }
   }
+  aiClick = () => {
+    const { board } = this.state;
+    let emptyBoxPosition;
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === undefined || board[i] === "") {
+        emptyBoxPosition = i;
+        break;
+      }
+    }
+    console.log(emptyBoxPosition);
+    const { player2 } = this.state;
+    this.setState((currentState) => {
+      return {
+        board: currentState.board.map((boardBox, index) => {
+          if (index === emptyBoxPosition) {
+            const newBoardBox = player2.icon;
+            return newBoardBox;
+          } else {
+            return boardBox;
+          }
+        }),
+        counter: currentState.counter + 1,
+      };
+    });
+  };
 
   handleClick = (e) => {
-    const { winner } = this.state;
+    const { winner, ai } = this.state;
     if (winner !== undefined) {
       return;
     }
     let id = Number(e.target.id.slice(4));
     // console.log(id);
     if (e.target.innerText) return;
-
-    if (this.state.counter % 2 === 0) {
+    if (ai) {
+      this.setState(
+        (currentState) => {
+          return {
+            board: [...currentState.board].map((boardBox, index) => {
+              if (index + 1 === id) {
+                return (boardBox = currentState.player1.icon);
+              } else {
+                return boardBox;
+              }
+            }),
+            counter: currentState.counter + 1,
+          };
+        },
+        () => {
+          this.aiClick();
+          return;
+        }
+      );
+    }
+    if (this.state.counter % 2 === 0 && !ai) {
       this.setState((currentState) => {
         return {
           board: [...currentState.board].map((boardBox, index) => {
@@ -200,7 +245,7 @@ class GameGrid extends React.Component {
           counter: currentState.counter + 1,
         };
       });
-    } else {
+    } else if (this.state.counter % 2 !== 0 && !ai) {
       this.setState((currentState) => {
         return {
           board: [...currentState.board].map((boardBox, index) => {
