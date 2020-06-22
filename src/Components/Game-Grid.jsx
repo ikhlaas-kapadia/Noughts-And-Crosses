@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import Player from "./Player";
 import BoardSelector from "./BoardSelector";
+import BotButton from "./Bot-Button";
 class GameGrid extends React.Component {
   state = {
     boardSize: 9,
@@ -15,7 +16,7 @@ class GameGrid extends React.Component {
     counter: 0,
     winCombinations: [],
     winningPattern: [],
-    ai: true,
+    bot: undefined,
   };
 
   handleboardSize = (e) => {
@@ -25,6 +26,15 @@ class GameGrid extends React.Component {
       boardSize: newboardSize,
       board: [...Array(newboardSize)],
     });
+  };
+
+  handleBot = (e) => {
+    const { name } = e.target;
+    if (name === "Bot") {
+      this.setState({ bot: true });
+    } else {
+      this.setState({ bot: false });
+    }
   };
 
   handleInputChange = (e) => {
@@ -65,7 +75,15 @@ class GameGrid extends React.Component {
   };
 
   checkWinner = () => {
-    const { winCombinations, board, player1, player2, counter } = this.state;
+    const {
+      winCombinations,
+      board,
+      player1,
+      player2,
+      counter,
+      winner,
+    } = this.state;
+    if (winner) return;
     const playerObject =
       counter % 2 === 0 || counter === 0 ? "player2" : "player1";
     const previousPlayer =
@@ -177,62 +195,50 @@ class GameGrid extends React.Component {
     ) {
       this.checkWinner();
     }
+    if (prevState.counter !== this.state.counter && this.state.bot) {
+      this.botClick();
+    }
   }
-  aiClick = () => {
-    const { board } = this.state;
-    let emptyBoxPosition;
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === undefined || board[i] === "") {
-        emptyBoxPosition = i;
-        break;
+  botClick = () => {
+    const { board, counter, player2, bot, winner } = this.state;
+
+    if (counter % 2 !== 0 && bot) {
+      let emptyBoxPosition;
+      for (let i = 0; i < board.length; i++) {
+        if (board[i] === undefined || board[i] === "") {
+          emptyBoxPosition = i;
+          break;
+        }
+      }
+      if (winner === undefined) {
+        setTimeout(() => {
+          this.setState((currentState) => {
+            return {
+              board: currentState.board.map((boardBox, index) => {
+                if (index === emptyBoxPosition) {
+                  const newBoardBox = player2.icon;
+                  return newBoardBox;
+                } else {
+                  return boardBox;
+                }
+              }),
+              counter: currentState.counter + 1,
+            };
+          });
+        }, 200);
       }
     }
-    console.log(emptyBoxPosition);
-    const { player2 } = this.state;
-    this.setState((currentState) => {
-      return {
-        board: currentState.board.map((boardBox, index) => {
-          if (index === emptyBoxPosition) {
-            const newBoardBox = player2.icon;
-            return newBoardBox;
-          } else {
-            return boardBox;
-          }
-        }),
-        counter: currentState.counter + 1,
-      };
-    });
   };
 
   handleClick = (e) => {
-    const { winner, ai } = this.state;
+    const { winner, bot } = this.state;
     if (winner !== undefined) {
       return;
     }
     let id = Number(e.target.id.slice(4));
     // console.log(id);
     if (e.target.innerText) return;
-    if (ai) {
-      this.setState(
-        (currentState) => {
-          return {
-            board: [...currentState.board].map((boardBox, index) => {
-              if (index + 1 === id) {
-                return (boardBox = currentState.player1.icon);
-              } else {
-                return boardBox;
-              }
-            }),
-            counter: currentState.counter + 1,
-          };
-        },
-        () => {
-          this.aiClick();
-          return;
-        }
-      );
-    }
-    if (this.state.counter % 2 === 0 && !ai) {
+    if (bot) {
       this.setState((currentState) => {
         return {
           board: [...currentState.board].map((boardBox, index) => {
@@ -245,7 +251,21 @@ class GameGrid extends React.Component {
           counter: currentState.counter + 1,
         };
       });
-    } else if (this.state.counter % 2 !== 0 && !ai) {
+    }
+    if (this.state.counter % 2 === 0 && !bot) {
+      this.setState((currentState) => {
+        return {
+          board: [...currentState.board].map((boardBox, index) => {
+            if (index + 1 === id) {
+              return (boardBox = currentState.player1.icon);
+            } else {
+              return boardBox;
+            }
+          }),
+          counter: currentState.counter + 1,
+        };
+      });
+    } else if (this.state.counter % 2 !== 0 && !bot) {
       this.setState((currentState) => {
         return {
           board: [...currentState.board].map((boardBox, index) => {
@@ -269,6 +289,7 @@ class GameGrid extends React.Component {
       boardSize,
       counter,
       winningPattern,
+      bot,
     } = this.state;
     return (
       <section>
@@ -291,6 +312,7 @@ class GameGrid extends React.Component {
             )}
           </div>
         </div>
+        <BotButton handleBot={this.handleBot} bot={bot} counter={counter} />
         <div className="Board-Wrapper">
           <BoardSelector
             handleboardSize={this.handleboardSize}
