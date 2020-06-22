@@ -43,9 +43,9 @@ const Player = (props) => {
             name={`${player}Icon`}
             minLength="1"
             maxLength="2"
-            placeholder="Type Weapon"
+            placeholder="Type Symbol"
           />
-          <button className="Change-Button">Change Weapon</button>
+          <button className="Change-Button">Change Symbol</button>
         </form>
       </div>
       <div className="Score-Container">
