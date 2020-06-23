@@ -341,7 +341,7 @@ class GameGrid extends React.Component {
           <div className="Message-Box">
             {winner !== undefined && (
               <p className="Message Win-Message">
-                {winner.length === 0 ? "Unnamed" : winner.toUpperCase()} WINS!
+                {winner.length === 0 ? "Unnamed" : winner} WINS!
               </p>
             )}
             {winner === undefined && counter === boardSize && (
