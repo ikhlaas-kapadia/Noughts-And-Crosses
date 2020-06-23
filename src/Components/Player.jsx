@@ -26,7 +26,7 @@ const Player = (props) => {
             onChange={handleInputChange}
             name={`${player}Input`}
             maxLength="10"
-            placeholder="Type Here"
+            placeholder="Type Name"
           ></input>
           <button className="Change-Button">Change Name</button>
         </form>
