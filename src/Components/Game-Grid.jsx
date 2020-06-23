@@ -98,7 +98,6 @@ class GameGrid extends React.Component {
     for (let i = 0; i < winCombinations.length; i++) {
       let winningMatchCounter = 0;
       for (let j = 0; j < winCombinations[i].length; j++) {
-        // console.log(i);
         for (let k = 0; k < playerPositions.length; k++) {
           if (winCombinations[i][j] === playerPositions[k]) {
             winningMatchCounter++;
@@ -139,7 +138,6 @@ class GameGrid extends React.Component {
           lineWins = [];
         }
       }
-      // console.log(horzWins, " --->horizon");
       winCombinations.push(...horzWins);
     };
 
@@ -151,7 +149,6 @@ class GameGrid extends React.Component {
         }
         vertWins.push(lineWins);
       }
-      // console.log(vertWins, " --->vertical");
       winCombinations.push(...vertWins);
     };
 
@@ -161,7 +158,6 @@ class GameGrid extends React.Component {
       let rowBaseToCalcWin = [firstRowFirstNumber, firstRowLastNumber];
       for (let i = 0; i < rowBaseToCalcWin.length; i++) {
         let lineWins = [rowBaseToCalcWin[i]];
-        // console.log(lineWins);
         for (let j = 0; j < firstRow.length - 1; j++) {
           if (i === 0) {
             lineWins.push(lineWins[j] + firstRow.length + 1);
@@ -171,8 +167,6 @@ class GameGrid extends React.Component {
         }
         diagonalWins.push(lineWins);
       }
-
-      // console.log(diagonalWins, " --->diagonal");
       winCombinations.push(...diagonalWins);
     };
     generateHorizontalWins();
@@ -200,7 +194,7 @@ class GameGrid extends React.Component {
     }
   }
   botClick = () => {
-    const { board, counter, player2, bot, winner } = this.state;
+    const { board, counter, player2, bot } = this.state;
 
     if (counter % 2 !== 0 && bot) {
       let emptyBoxPosition;
@@ -234,7 +228,6 @@ class GameGrid extends React.Component {
       return;
     }
     let id = Number(e.target.id.slice(4));
-    // console.log(id);
     if (e.target.innerText) return;
     if (bot) {
       this.setState((currentState) => {
