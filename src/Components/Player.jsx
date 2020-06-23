@@ -1,13 +1,7 @@
 import React from "react";
 
 const Player = (props) => {
-  const {
-    handleInputChange,
-    handleNameSubmit,
-    handleIconSubmit,
-    counter,
-    winner,
-  } = props;
+  const { handleInputChange, handleNameSubmit, handleIconSubmit } = props;
 
   const player = props.player1 ? "player1" : "player2";
   const { name, icon, gamesWon } = props[player];
@@ -20,7 +14,7 @@ const Player = (props) => {
       </div>
       <div className="Player-Details">
         <form className="NameForm" onSubmit={handleNameSubmit} name={player}>
-          <label for={`${player}Input`}></label>
+          <label htmlFor={`${player}Input`}></label>
           <input
             className="Name-Input"
             onChange={handleInputChange}
@@ -35,7 +29,7 @@ const Player = (props) => {
           onSubmit={handleIconSubmit}
           name={player}
         >
-          <label for={`${player}`}></label>
+          <label htmlFor={`${player}`}></label>
           {/* <span>Weapon Change </span> */}
           <input
             className="Weapon-Input"

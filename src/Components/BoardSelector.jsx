@@ -4,7 +4,7 @@ const BoardSelector = (props) => {
   const { handleboardSize, counter } = props;
   return (
     <div className={counter === 0 ? "Board-Selector" : "Hidden-Selector"}>
-      <label for="Drop-Down">Select board size: </label>
+      <label htmlFor="Drop-Down">Select board size: </label>
       <select className="Drop-Down" onChange={handleboardSize} name="Drop-Down">
         <option>3</option>
         <option>4</option>
