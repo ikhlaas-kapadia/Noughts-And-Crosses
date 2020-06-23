@@ -4,6 +4,7 @@ const BotButton = (props) => {
   const { handleBot, bot } = props;
   return (
     <div className={bot === undefined ? "Mode-Btns" : "Mode-Btns-Hidden"}>
+      <p className="Mode-Select"> Select Mode:</p>
       <button onClick={handleBot} name="Bot">
         You VS Bot
       </button>
