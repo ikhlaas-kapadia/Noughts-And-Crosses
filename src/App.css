@@ -253,22 +253,19 @@ section {
   font-size: 1rem;
 }
 
-.Hidden-Selector,
-.Hidden-Selector > select,
-option {
+.Hidden-Selector {
   color: transparent;
   background: transparent;
   border: none;
-}
-.Hidden-Selector > select,
-option {
-  display: none;
 }
 
 .Drop-Down {
   font-size: 1rem;
   font-family: inherit;
   height: fit-content;
+}
+.Hidden-Selector > select {
+  display: none;
 }
 
 .Board {
@@ -376,6 +373,7 @@ option {
   }
 }
 .Win-Message {
+  background-color: blanchedalmond;
   padding-top: 2%;
   font-size: 1.5rem;
   animation: blinker 1s;
