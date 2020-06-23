@@ -210,23 +210,21 @@ class GameGrid extends React.Component {
           break;
         }
       }
-      if (winner === undefined) {
-        setTimeout(() => {
-          this.setState((currentState) => {
-            return {
-              board: currentState.board.map((boardBox, index) => {
-                if (index === emptyBoxPosition) {
-                  const newBoardBox = player2.icon;
-                  return newBoardBox;
-                } else {
-                  return boardBox;
-                }
-              }),
-              counter: currentState.counter + 1,
-            };
-          });
-        }, 200);
-      }
+      setTimeout(() => {
+        this.setState((currentState) => {
+          return {
+            board: currentState.board.map((boardBox, index) => {
+              if (index === emptyBoxPosition) {
+                const newBoardBox = player2.icon;
+                return newBoardBox;
+              } else {
+                return boardBox;
+              }
+            }),
+            counter: currentState.counter + 1,
+          };
+        });
+      }, 150);
     }
   };
 
