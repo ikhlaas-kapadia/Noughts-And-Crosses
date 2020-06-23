@@ -13,6 +13,7 @@ html {
   left: 0;
   right: 0;
 }
+/* <----- Main Header ----> */
 header {
   background-color: #ffeb38;
   height: 10vh;
@@ -25,6 +26,7 @@ header {
   font-size: 1rem;
   color: #101510;
 }
+/* <----- Mode Selection ----> */
 .Mode-Btns-Hidden {
   display: none;
 }
@@ -65,7 +67,7 @@ header {
 .Mode-Select {
   font-size: 4rem;
 }
-
+/* <----- Main Section ----> */
 section {
   box-sizing: border-box;
   margin: 0;
@@ -89,12 +91,10 @@ section {
   max-width: 95%;
   min-width: 95%;
   min-height: 20%;
-  /* max-height: 60%; */
   margin: 0.3em;
   border: 1px solid black;
 }
 .Player {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   height: 85%;
@@ -104,7 +104,6 @@ section {
 }
 
 .Player-Heading {
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,14 +113,11 @@ section {
   height: 100%;
 }
 .Player-Heading h2 {
-  /* border: 1px solid green; */
   margin: 0;
   padding-top: 5%;
   text-align: center;
-  /* padding-top: 5%; */
   width: 90%;
   min-height: 60%;
-  /* border: 1px solid yellow; */
   letter-spacing: 0.1rem;
   font-size: 1.4rem;
   word-wrap: break-word;
@@ -142,15 +138,15 @@ section {
   font-size: 1.5rem;
   font-family: Roboto, “Open Sans”, “Helvetica Neue”, sans-serif;
 }
+
+/* <----- Player Forms ----> */
 .Player-Details {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   width: 45%;
   max-height: 100%;
 }
 .NameForm {
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -160,26 +156,22 @@ section {
 }
 .Name-Input,
 .Weapon-Input {
-  /* border: 1px solid black; */
   width: 60%;
   height: 45%;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 .Change-Button {
-  /* font-family: inherit; */
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   padding: 0;
   width: 60%;
   height: 45%;
 }
 .Weapon-Changer {
-  /* border: 1px solid yellow; */
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .Weapon-Changer span {
@@ -191,12 +183,15 @@ section {
   height: 40%;
 }
 
+/* <----- Score Display ----> */
+
 .Score-Container {
   display: flex;
   flex-direction: column;
   width: 25%;
   align-items: center;
   justify-content: center;
+  color: #101510;
 }
 .Score-Container h3 {
   padding-top: 5%;
@@ -205,7 +200,6 @@ section {
   margin: 0;
   text-align: center;
   font-size: 1.7rem;
-  color: #101510;
 }
 .Score {
   display: inline-block;
@@ -215,8 +209,9 @@ section {
   width: 100%;
 }
 
+/* <----- Turn Display ----> */
+
 .Turn-Box {
-  /* border: 1px solid black; */
   background-color: #37d84a;
   height: 15%;
   max-height: 15%;
@@ -225,7 +220,6 @@ section {
 .Turn,
 .No-Turn {
   vertical-align: text-bottom;
-  /* border: 1px solid red; */
   text-align: center;
   background-color: #37d84a;
   height: 100%;
@@ -240,7 +234,7 @@ section {
   font-size: 1rem;
 }
 
-/* <——— BOARD ——> */
+/* <——— GAME SECTION ——> */
 .Board-Wrapper {
   /* border: 1px solid red; */
   display: flex;
@@ -277,6 +271,8 @@ section {
 .Hidden-Selector > select {
   display: none;
 }
+
+/* <----- Main Board ----> */
 
 .Board {
   display: grid;
@@ -472,14 +468,14 @@ section {
     justify-content: center;
     width: 100%;
     min-width: 100%;
-    height: 25%;
-    max-height: 25%;
+    height: 30%;
+    min-height: 25%;
   }
   .Player-Heading h2 {
-    height: 50%;
+    /* height: 50%; */
     width: 90%;
     /* border: 1px solid yellow; */
-    margin: 0;
+    /* margin: 0; */
   }
   .Icon {
     width: 100%;
@@ -490,7 +486,7 @@ section {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 40%;
+    height: 90%;
   }
 
   .Name-Input,
@@ -594,17 +590,24 @@ section {
     height: 350px;
   }
 }
+
 @media only screen and (min-width: 1024px) {
   html {
-    font-size: 1.6em;
-  }
-}
-@media only screen and (min-width: 1024px) and (max-height: 1366px) {
-  html {
-    font-size: 2.3em;
+    font-size: 1.3em;
   }
   .Board {
-    height: 500px;
-    width: 500px;
+    height: 350px;
+    width: 400px;
+  }
+}
+/* ----------- iPad Pro ----------- */
+/* Portrait and Landscape */
+@media only screen and (min-width: 1024px) and (max-height: 1366px) {
+  html {
+    font-size: 1.5em;
+  }
+  .Board {
+    height: 350px;
+    width: 400px;
   }
 }
