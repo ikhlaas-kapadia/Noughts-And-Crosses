@@ -88,8 +88,8 @@ section {
 .Player-Box {
   display: flex;
   flex-direction: column;
-  height: 19%;
-  width: 95%;
+  height: 18%;
+  width: 90%;
   min-width: 295px;
   border: 1px solid black;
 }
