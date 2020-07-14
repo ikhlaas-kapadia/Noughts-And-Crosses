@@ -29,9 +29,12 @@ class GameGrid extends React.Component {
   };
 
   handleBot = (e) => {
+    const { player2 } = this.state;
     const { name } = e.target;
+    const botPlayer = { ...player2 };
+    botPlayer.name = "Bot";
     if (name === "Bot") {
-      this.setState({ bot: true });
+      this.setState({ bot: true, player2: botPlayer });
     } else {
       this.setState({ bot: false });
     }
