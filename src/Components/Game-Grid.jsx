@@ -51,7 +51,10 @@ class GameGrid extends React.Component {
     const playerInput = name === "player1" ? player1Input : player2Input;
     const updatedPlayer = { ...this.state[name] };
     updatedPlayer.name = playerInput;
-    this.setState({ [name]: updatedPlayer, [`${name}Input`]: "" });
+    this.setState({
+      [name]: updatedPlayer,
+      [`${name}Input`]: updatedPlayer.name,
+    });
   };
 
   handleIconSubmit = (e) => {
@@ -304,33 +307,37 @@ class GameGrid extends React.Component {
           </div>
         </div>
         <BotButton handleBot={this.handleBot} bot={bot} counter={counter} />
-        <div className="Board-Wrapper">
+        <div className="Middle-Wrapper">
           <BoardSelector
             handleboardSize={this.handleboardSize}
             counter={counter}
           />
-          <div className={`Board-${boardSize} Board`}>
-            {board.map((boardBox, index) => {
-              return (
-                <div
-                  id={`box-${index + 1}`}
-                  key={`box-${index + 1}`}
-                  onClick={this.handleClick}
-                  className={
-                    winningPattern.find((element) => element === index + 1) !==
-                    undefined
-                      ? "Winner"
-                      : "Box"
-                  }
-                >
-                  <span className="Box-Content">{boardBox}</span>
-                </div>
-              );
-            })}
+          <div className="Board-Wrapper">
+            <div className={`Board-${boardSize} Board`}>
+              {board.map((boardBox, index) => {
+                return (
+                  <div
+                    id={`box-${index + 1}`}
+                    key={`box-${index + 1}`}
+                    onClick={this.handleClick}
+                    className={
+                      winningPattern.find(
+                        (element) => element === index + 1
+                      ) !== undefined
+                        ? "Winner"
+                        : "Box"
+                    }
+                  >
+                    <span className="Box-Content">{boardBox}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <button className="Reset-Btn" onClick={this.handleReset}>
+              Reset
+            </button>
           </div>
-          <button className="Reset-Btn" onClick={this.handleReset}>
-            Reset
-          </button>
+
           <div className="Message-Box">
             {winner !== undefined && (
               <p className="Message Win-Message">
