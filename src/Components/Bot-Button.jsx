@@ -6,10 +6,10 @@ const BotButton = (props) => {
     <div className={bot === undefined ? "Mode-Btns" : "Mode-Btns-Hidden"}>
       <p className="Mode-Select"> Select Mode:</p>
       <button onClick={handleBot} name="Bot">
-        You VS Bot
+        VS Bot
       </button>
       <button onClick={handleBot} name="Someone">
-        You VS Someone
+        VS Someone
       </button>
       <p>Refresh page after starting game if you wish to change mode</p>
     </div>
