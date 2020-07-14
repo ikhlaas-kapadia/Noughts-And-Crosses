@@ -267,7 +267,6 @@ section {
 }
 
 .Drop-Down {
-  border: 1px solid red;
   font-size: 0.9rem;
   font-family: inherit;
   min-height: fit-content;
@@ -549,6 +548,18 @@ section {
   }
   .Board {
     width: 390px;
+  }
+  .Board-Selector,
+  .Hidden-Selector {
+    font-size: 0.9rem;
+    padding-top: 0;
+    height: 7%;
+    min-height: 7%;
+    margin-bottom: 10px;
+  }
+  .Drop-Down {
+    font-size: 0.75rem;
+    padding: 0;
   }
 }
 @media only screen and (min-width: 768px) and (min-height: 1024px) {
