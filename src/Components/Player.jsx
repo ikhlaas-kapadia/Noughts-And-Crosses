@@ -22,7 +22,7 @@ const Player = (props) => {
             maxLength="10"
             placeholder="Type Name"
           ></input>
-          <button className="Change-Button">Change Name</button>
+          <button className="Change-Button">Change</button>
         </form>
         <form
           className="Weapon-Changer"
@@ -30,7 +30,6 @@ const Player = (props) => {
           name={player}
         >
           <label htmlFor={`${player}`}></label>
-          {/* <span>Weapon Change </span> */}
           <input
             className="Weapon-Input"
             onChange={handleInputChange}
@@ -39,7 +38,7 @@ const Player = (props) => {
             maxLength="2"
             placeholder="Type Symbol"
           />
-          <button className="Change-Button">Change Symbol</button>
+          <button className="Change-Button">Change</button>
         </form>
       </div>
       <div className="Score-Container">
