@@ -267,9 +267,11 @@ section {
 }
 
 .Drop-Down {
+  border: 1px solid red;
   font-size: 0.9rem;
   font-family: inherit;
-  height: fit-content;
+  min-height: fit-content;
+  min-width: fit-content;
 }
 .Hidden-Selector > select {
   display: none;
